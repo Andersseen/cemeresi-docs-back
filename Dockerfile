@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 
 # Set production environment
 ENV NODE_ENV=production
-ENV DATABASE_URL=postgresql://postgres:hKmLLjMmtzRiMfNQqrnZaafwEaFEyYMg@viaduct.proxy.rlwy.net:10926/railway
+ENV DATABASE_URL={$DATABASE_URL}
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
@@ -20,7 +20,6 @@ WORKDIR /usr/src/app
 COPY . .
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 COPY prisma-client ./prisma-client
-COPY .env ./
 
 RUN pnpm build
 RUN pnpm prune --prod
