@@ -6,10 +6,9 @@ import {
   Body,
   Put,
   Delete,
+  NotFoundException,
 } from '@nestjs/common';
-// biome-ignore lint/style/useImportType: <explanation>
 import { ClientService } from './client.service';
-// biome-ignore lint/style/useImportType: <explanation>
 import { Client } from '@prisma/client';
 
 @Controller('client')
@@ -17,35 +16,49 @@ export class ClientController {
   constructor(private clientService: ClientService) {}
 
   @Get()
-  getAllClient() {
-    return this.clientService.getAllClients();
+  async getAllClient() {
+    try {
+      return this.clientService.getAllClients();
+    } catch (error) {
+      throw new NotFoundException('Client does not exist');
+    }
   }
 
   // findOne(@Param('id') id: string):  Client {
   @Get(':id')
   async getClient(@Param('id') id: string) {
-    return this.clientService.getClientById(id);
+    const client = await this.clientService.getClientById(id);
+    if (!client) throw new NotFoundException('Client not found');
+    return client;
   }
 
   @Post()
-  createClient(@Body() Client_singular: Client) {
-    this.clientService.addClient(Client_singular);
+  async createClient(@Body() Client_singular: Client) {
+    try {
+      return this.clientService.addClient(Client_singular);
+    } catch (error) {
+      throw new NotFoundException('Client does not exist');
+    }
   }
 
   @Put()
-  updateClient_singular(
+  async updateClient_singular(
     @Param('id') id: string,
     @Body() Client_singular: Client,
   ) {
-    this.clientService.updateClient(id, Client_singular);
+    try {
+      return this.clientService.updateClient(id, Client_singular);
+    } catch (error) {
+      throw new NotFoundException('Client does not exist');
+    }
   }
 
-  /**
-   * Delete Client_singular
-   * @param id
-   */
   @Delete()
-  deleteClient_singular(@Param('id') id: string) {
-    this.clientService.removeClient(id);
+  async deleteClient_singular(@Param('id') id: string) {
+    try {
+      return this.clientService.removeClient(id);
+    } catch (error) {
+      throw new NotFoundException('Client does not exist');
+    }
   }
 }
