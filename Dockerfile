@@ -1,10 +1,16 @@
 FROM node:20-alpine AS base
 
 RUN npm i -g pnpm
+RUN npm i -g @nestjs/cli
 
 FROM base AS dependencies
 
 WORKDIR /usr/src/app
+
+# Set production environment
+ENV NODE_ENV=production
+ENV DATABASE_URL=postgresql://postgres:hKmLLjMmtzRiMfNQqrnZaafwEaFEyYMg@viaduct.proxy.rlwy.net:10926/railway
+
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
@@ -13,15 +19,14 @@ FROM base AS build
 WORKDIR /usr/src/app
 COPY . .
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
+COPY prisma-client ./prisma-client
+COPY .env ./
+
 RUN pnpm build
 RUN pnpm prune --prod
-RUN pnpm prisma:generate
 
-FROM base AS deploy
 
-WORKDIR /usr/src/app
-COPY --from=build /usr/src/app/dist/ ./dist/
-COPY --from=build /usr/src/app/node_modules ./node_modules
+
 
 EXPOSE 3000
 

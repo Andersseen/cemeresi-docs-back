@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-// biome-ignore lint/style/useImportType: <explanation>
 import { PrismaService } from './../prisma/prisma.service';
-// biome-ignore lint/style/useImportType: <explanation>
-import { Client } from '@prisma/client';
+import { Client } from 'prisma-client';
 
 @Injectable()
 export class ClientService {

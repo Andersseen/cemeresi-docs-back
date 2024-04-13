@@ -9,7 +9,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ClientService } from './client.service';
-import { Client } from '@prisma/client';
+import { Client } from 'prisma-client';
 
 @Controller('client')
 export class ClientController {
