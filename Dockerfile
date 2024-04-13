@@ -15,6 +15,7 @@ COPY . .
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 RUN pnpm build
 RUN pnpm prune --prod
+RUN pnpm prisma:generate
 
 FROM base AS deploy
 
