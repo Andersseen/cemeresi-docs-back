@@ -11,10 +11,12 @@ datasource db {
 
 
 model Client{
-  id        String @id
+  id        Int  @id @default(autoincrement())
   name      String
   lastName  String
   phone     String?
-  email     String?
+  sex       String?
+  birthday  String?
+  email     String? 
   notes     String?
 }
