@@ -872,24 +872,38 @@ export namespace Prisma {
 
   export type AggregateClient = {
     _count: ClientCountAggregateOutputType | null
+    _avg: ClientAvgAggregateOutputType | null
+    _sum: ClientSumAggregateOutputType | null
     _min: ClientMinAggregateOutputType | null
     _max: ClientMaxAggregateOutputType | null
   }
 
+  export type ClientAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ClientSumAggregateOutputType = {
+    id: number | null
+  }
+
   export type ClientMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     name: string | null
     lastName: string | null
     phone: string | null
+    sex: string | null
+    birthday: string | null
     email: string | null
     notes: string | null
   }
 
   export type ClientMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     name: string | null
     lastName: string | null
     phone: string | null
+    sex: string | null
+    birthday: string | null
     email: string | null
     notes: string | null
   }
@@ -899,17 +913,29 @@ export namespace Prisma {
     name: number
     lastName: number
     phone: number
+    sex: number
+    birthday: number
     email: number
     notes: number
     _all: number
   }
 
 
+  export type ClientAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type ClientSumAggregateInputType = {
+    id?: true
+  }
+
   export type ClientMinAggregateInputType = {
     id?: true
     name?: true
     lastName?: true
     phone?: true
+    sex?: true
+    birthday?: true
     email?: true
     notes?: true
   }
@@ -919,6 +945,8 @@ export namespace Prisma {
     name?: true
     lastName?: true
     phone?: true
+    sex?: true
+    birthday?: true
     email?: true
     notes?: true
   }
@@ -928,6 +956,8 @@ export namespace Prisma {
     name?: true
     lastName?: true
     phone?: true
+    sex?: true
+    birthday?: true
     email?: true
     notes?: true
     _all?: true
@@ -971,6 +1001,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ClientAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ClientSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ClientMinAggregateInputType
@@ -1001,18 +1043,24 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ClientCountAggregateInputType | true
+    _avg?: ClientAvgAggregateInputType
+    _sum?: ClientSumAggregateInputType
     _min?: ClientMinAggregateInputType
     _max?: ClientMaxAggregateInputType
   }
 
   export type ClientGroupByOutputType = {
-    id: string
+    id: number
     name: string
     lastName: string
     phone: string | null
+    sex: string | null
+    birthday: string | null
     email: string | null
     notes: string | null
     _count: ClientCountAggregateOutputType | null
+    _avg: ClientAvgAggregateOutputType | null
+    _sum: ClientSumAggregateOutputType | null
     _min: ClientMinAggregateOutputType | null
     _max: ClientMaxAggregateOutputType | null
   }
@@ -1036,6 +1084,8 @@ export namespace Prisma {
     name?: boolean
     lastName?: boolean
     phone?: boolean
+    sex?: boolean
+    birthday?: boolean
     email?: boolean
     notes?: boolean
   }, ExtArgs["result"]["client"]>
@@ -1045,6 +1095,8 @@ export namespace Prisma {
     name?: boolean
     lastName?: boolean
     phone?: boolean
+    sex?: boolean
+    birthday?: boolean
     email?: boolean
     notes?: boolean
   }
@@ -1054,10 +1106,12 @@ export namespace Prisma {
     name: "Client"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       name: string
       lastName: string
       phone: string | null
+      sex: string | null
+      birthday: string | null
       email: string | null
       notes: string | null
     }, ExtArgs["result"]["client"]>
@@ -1454,10 +1508,12 @@ export namespace Prisma {
    * Fields of the Client model
    */ 
   interface ClientFieldRefs {
-    readonly id: FieldRef<"Client", 'String'>
+    readonly id: FieldRef<"Client", 'Int'>
     readonly name: FieldRef<"Client", 'String'>
     readonly lastName: FieldRef<"Client", 'String'>
     readonly phone: FieldRef<"Client", 'String'>
+    readonly sex: FieldRef<"Client", 'String'>
+    readonly birthday: FieldRef<"Client", 'String'>
     readonly email: FieldRef<"Client", 'String'>
     readonly notes: FieldRef<"Client", 'String'>
   }
@@ -1766,6 +1822,8 @@ export namespace Prisma {
     name: 'name',
     lastName: 'lastName',
     phone: 'phone',
+    sex: 'sex',
+    birthday: 'birthday',
     email: 'email',
     notes: 'notes'
   };
@@ -1803,6 +1861,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -1817,16 +1889,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Float'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -1837,10 +1909,12 @@ export namespace Prisma {
     AND?: ClientWhereInput | ClientWhereInput[]
     OR?: ClientWhereInput[]
     NOT?: ClientWhereInput | ClientWhereInput[]
-    id?: StringFilter<"Client"> | string
+    id?: IntFilter<"Client"> | number
     name?: StringFilter<"Client"> | string
     lastName?: StringFilter<"Client"> | string
     phone?: StringNullableFilter<"Client"> | string | null
+    sex?: StringNullableFilter<"Client"> | string | null
+    birthday?: StringNullableFilter<"Client"> | string | null
     email?: StringNullableFilter<"Client"> | string | null
     notes?: StringNullableFilter<"Client"> | string | null
   }
@@ -1850,18 +1924,22 @@ export namespace Prisma {
     name?: SortOrder
     lastName?: SortOrder
     phone?: SortOrderInput | SortOrder
+    sex?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
   }
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: ClientWhereInput | ClientWhereInput[]
     OR?: ClientWhereInput[]
     NOT?: ClientWhereInput | ClientWhereInput[]
     name?: StringFilter<"Client"> | string
     lastName?: StringFilter<"Client"> | string
     phone?: StringNullableFilter<"Client"> | string | null
+    sex?: StringNullableFilter<"Client"> | string | null
+    birthday?: StringNullableFilter<"Client"> | string | null
     email?: StringNullableFilter<"Client"> | string | null
     notes?: StringNullableFilter<"Client"> | string | null
   }, "id">
@@ -1871,86 +1949,114 @@ export namespace Prisma {
     name?: SortOrder
     lastName?: SortOrder
     phone?: SortOrderInput | SortOrder
+    sex?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     _count?: ClientCountOrderByAggregateInput
+    _avg?: ClientAvgOrderByAggregateInput
     _max?: ClientMaxOrderByAggregateInput
     _min?: ClientMinOrderByAggregateInput
+    _sum?: ClientSumOrderByAggregateInput
   }
 
   export type ClientScalarWhereWithAggregatesInput = {
     AND?: ClientScalarWhereWithAggregatesInput | ClientScalarWhereWithAggregatesInput[]
     OR?: ClientScalarWhereWithAggregatesInput[]
     NOT?: ClientScalarWhereWithAggregatesInput | ClientScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Client"> | string
+    id?: IntWithAggregatesFilter<"Client"> | number
     name?: StringWithAggregatesFilter<"Client"> | string
     lastName?: StringWithAggregatesFilter<"Client"> | string
     phone?: StringNullableWithAggregatesFilter<"Client"> | string | null
+    sex?: StringNullableWithAggregatesFilter<"Client"> | string | null
+    birthday?: StringNullableWithAggregatesFilter<"Client"> | string | null
     email?: StringNullableWithAggregatesFilter<"Client"> | string | null
     notes?: StringNullableWithAggregatesFilter<"Client"> | string | null
   }
 
   export type ClientCreateInput = {
-    id: string
     name: string
     lastName: string
     phone?: string | null
+    sex?: string | null
+    birthday?: string | null
     email?: string | null
     notes?: string | null
   }
 
   export type ClientUncheckedCreateInput = {
-    id: string
+    id?: number
     name: string
     lastName: string
     phone?: string | null
+    sex?: string | null
+    birthday?: string | null
     email?: string | null
     notes?: string | null
   }
 
   export type ClientUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClientUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClientCreateManyInput = {
-    id: string
+    id?: number
     name: string
     lastName: string
     phone?: string | null
+    sex?: string | null
+    birthday?: string | null
     email?: string | null
     notes?: string | null
   }
 
   export type ClientUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClientUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -1993,8 +2099,14 @@ export namespace Prisma {
     name?: SortOrder
     lastName?: SortOrder
     phone?: SortOrder
+    sex?: SortOrder
+    birthday?: SortOrder
     email?: SortOrder
     notes?: SortOrder
+  }
+
+  export type ClientAvgOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type ClientMaxOrderByAggregateInput = {
@@ -2002,6 +2114,8 @@ export namespace Prisma {
     name?: SortOrder
     lastName?: SortOrder
     phone?: SortOrder
+    sex?: SortOrder
+    birthday?: SortOrder
     email?: SortOrder
     notes?: SortOrder
   }
@@ -2011,8 +2125,30 @@ export namespace Prisma {
     name?: SortOrder
     lastName?: SortOrder
     phone?: SortOrder
+    sex?: SortOrder
+    birthday?: SortOrder
     email?: SortOrder
     notes?: SortOrder
+  }
+
+  export type ClientSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2059,6 +2195,25 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2087,6 +2242,33 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2102,17 +2284,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {

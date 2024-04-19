@@ -25,6 +25,9 @@ dependencies:
   rxjs:
     specifier: ^7.8.1
     version: 7.8.1
+  xlsx:
+    specifier: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
+    version: '@cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz'
 
 devDependencies:
   '@biomejs/biome':
@@ -5299,3 +5302,11 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  '@cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz':
+    resolution: {tarball: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz}
+    name: xlsx
+    version: 0.20.2
+    engines: {node: '>=0.8'}
+    hasBin: true
+    dev: false

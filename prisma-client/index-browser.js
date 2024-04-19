@@ -124,6 +124,8 @@ exports.Prisma.ClientScalarFieldEnum = {
   name: 'name',
   lastName: 'lastName',
   phone: 'phone',
+  sex: 'sex',
+  birthday: 'birthday',
   email: 'email',
   notes: 'notes'
 };
