@@ -11,7 +11,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ExcelService } from './excel.service';
-import { Client } from 'prisma-client';
 
 @Controller('excel')
 export class ExcelController {
@@ -21,36 +20,30 @@ export class ExcelController {
   @UseInterceptors(FileInterceptor('file'))
   async importExcel(@UploadedFile() file) {
     const workbook = XLSX.read(file.buffer);
-    const sheetName = workbook.SheetNames[0]; // Suponiendo que solo hay una hoja en el archivo Excel
-    const sheet = workbook.Sheets[sheetName];
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+
     // Obtener el rango completo de la hoja de cálculo
-    const range = XLSX.utils.decode_range(sheet['!ref']);
+    const range = XLSX.utils.decode_range(worksheet['!ref']);
 
     // Ajustar el rango para comenzar desde la fila 5
-    range.s.r = 4; // La primera fila es 0
+    range.s.r = 5; // La primera fila es 0
 
-    // Convertir el rango de celdas en JSON
-    const rawData = XLSX.utils.sheet_to_json(sheet, { range });
-    // Mapear los nombres de las claves en el JSON
-    const mappedData = rawData.map((item: any) => ({
-      id: item['Nº Cliente'],
-      name: item['Nombre'] ? item['Nombre'] : '',
-      lastName: item['Primer apellido'] ?item['Primer apellido'] : '' ,
-      sex: item['Sexo'] ? item['Sexo'] : null,
-      birthday: item['Fecha nacimiento'] ? item['Fecha nacimiento'].toString() : null,
-      phone: item['Teléfono'] ? item['Teléfono'].toString() : null,
-      email: item['E-mail']? item['E-mail'].toString() : null,
-      notes: item['Notas'] ? item['Notas'] :null,
-    }));
+    const rawData = [];
+    for (let R = range.s.r; R <= range.e.r; ++R) {
+      const row = {};
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
 
-    // Aquí puedes manejar los datos importados, por ejemplo, guardarlos en la base de datos o procesarlos de alguna otra manera
-    try {
-      return this.excelService.addManyClients(mappedData);
-    } catch (error) {
-      throw new NotFoundException('Patients could not be saved');
+        const columnName = XLSX.utils.encode_col(C);
+        if (columnName === 'A') continue;
+        row[parcecColumpName(columnName)] =
+          worksheet[cellAddress]?.w.toString() ?? '';
+      }
+
+      rawData.push(row);
     }
-
-    // return { message: 'Datos importados correctamente' };
+    return this.excelService.addManyClients(rawData);
   }
 
   @Get('export')
@@ -77,4 +70,19 @@ export class ExcelController {
     res.setHeader('Content-Disposition', 'attachment; filename=usuarios.xlsx');
     res.send(excelBuffer);
   }
+}
+type Column = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I';
+function parcecColumpName(column: string): string {
+  const correctKeyName = {
+    A: 'id',
+    B: 'name',
+    C: 'lastName',
+    D: 'sex',
+    E: 'birthday',
+    F: 'phone',
+    G: 'email',
+    H: 'notes',
+    I: 'registration',
+  };
+  return correctKeyName[column as Column];
 }

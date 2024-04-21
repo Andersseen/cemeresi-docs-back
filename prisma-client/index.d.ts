@@ -14,10 +14,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Client
+ * Model Patient
  * 
  */
-export type Client = $Result.DefaultSelection<Prisma.$ClientPayload>
+export type Patient = $Result.DefaultSelection<Prisma.$PatientPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -26,8 +26,8 @@ export type Client = $Result.DefaultSelection<Prisma.$ClientPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Clients
- * const clients = await prisma.client.findMany()
+ * // Fetch zero or more Patients
+ * const patients = await prisma.patient.findMany()
  * ```
  *
  * 
@@ -47,8 +47,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Clients
-   * const clients = await prisma.client.findMany()
+   * // Fetch zero or more Patients
+   * const patients = await prisma.patient.findMany()
    * ```
    *
    * 
@@ -142,14 +142,14 @@ export class PrismaClient<
   $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
 
       /**
-   * `prisma.client`: Exposes CRUD operations for the **Client** model.
+   * `prisma.patient`: Exposes CRUD operations for the **Patient** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Clients
-    * const clients = await prisma.client.findMany()
+    * // Fetch zero or more Patients
+    * const patients = await prisma.patient.findMany()
     * ```
     */
-  get client(): Prisma.ClientDelegate<ExtArgs>;
+  get patient(): Prisma.PatientDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -620,7 +620,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Client: 'Client'
+    Patient: 'Patient'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -637,73 +637,73 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'client'
+      modelProps: 'patient'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
-      Client: {
-        payload: Prisma.$ClientPayload<ExtArgs>
-        fields: Prisma.ClientFieldRefs
+      Patient: {
+        payload: Prisma.$PatientPayload<ExtArgs>
+        fields: Prisma.PatientFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ClientFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload> | null
+            args: Prisma.PatientFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ClientFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload>
+            args: Prisma.PatientFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload>
           }
           findFirst: {
-            args: Prisma.ClientFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload> | null
+            args: Prisma.PatientFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ClientFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload>
+            args: Prisma.PatientFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload>
           }
           findMany: {
-            args: Prisma.ClientFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload>[]
+            args: Prisma.PatientFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload>[]
           }
           create: {
-            args: Prisma.ClientCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload>
+            args: Prisma.PatientCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload>
           }
           createMany: {
-            args: Prisma.ClientCreateManyArgs<ExtArgs>,
+            args: Prisma.PatientCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.ClientDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload>
+            args: Prisma.PatientDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload>
           }
           update: {
-            args: Prisma.ClientUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload>
+            args: Prisma.PatientUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload>
           }
           deleteMany: {
-            args: Prisma.ClientDeleteManyArgs<ExtArgs>,
+            args: Prisma.PatientDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.ClientUpdateManyArgs<ExtArgs>,
+            args: Prisma.PatientUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.ClientUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ClientPayload>
+            args: Prisma.PatientUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PatientPayload>
           }
           aggregate: {
-            args: Prisma.ClientAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateClient>
+            args: Prisma.PatientAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePatient>
           }
           groupBy: {
-            args: Prisma.ClientGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ClientGroupByOutputType>[]
+            args: Prisma.PatientGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PatientGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ClientCountArgs<ExtArgs>,
-            result: $Utils.Optional<ClientCountAggregateOutputType> | number
+            args: Prisma.PatientCountArgs<ExtArgs>,
+            result: $Utils.Optional<PatientCountAggregateOutputType> | number
           }
         }
       }
@@ -871,37 +871,26 @@ export namespace Prisma {
    */
 
   /**
-   * Model Client
+   * Model Patient
    */
 
-  export type AggregateClient = {
-    _count: ClientCountAggregateOutputType | null
-    _avg: ClientAvgAggregateOutputType | null
-    _sum: ClientSumAggregateOutputType | null
-    _min: ClientMinAggregateOutputType | null
-    _max: ClientMaxAggregateOutputType | null
+  export type AggregatePatient = {
+    _count: PatientCountAggregateOutputType | null
+    _avg: PatientAvgAggregateOutputType | null
+    _sum: PatientSumAggregateOutputType | null
+    _min: PatientMinAggregateOutputType | null
+    _max: PatientMaxAggregateOutputType | null
   }
 
-  export type ClientAvgAggregateOutputType = {
+  export type PatientAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type ClientSumAggregateOutputType = {
+  export type PatientSumAggregateOutputType = {
     id: number | null
   }
 
-  export type ClientMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    lastName: string | null
-    phone: string | null
-    sex: string | null
-    birthday: string | null
-    email: string | null
-    notes: string | null
-  }
-
-  export type ClientMaxAggregateOutputType = {
+  export type PatientMinAggregateOutputType = {
     id: number | null
     name: string | null
     lastName: string | null
@@ -909,10 +898,23 @@ export namespace Prisma {
     sex: string | null
     birthday: string | null
     email: string | null
+    registration: string | null
     notes: string | null
   }
 
-  export type ClientCountAggregateOutputType = {
+  export type PatientMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    lastName: string | null
+    phone: string | null
+    sex: string | null
+    birthday: string | null
+    email: string | null
+    registration: string | null
+    notes: string | null
+  }
+
+  export type PatientCountAggregateOutputType = {
     id: number
     name: number
     lastName: number
@@ -920,20 +922,21 @@ export namespace Prisma {
     sex: number
     birthday: number
     email: number
+    registration: number
     notes: number
     _all: number
   }
 
 
-  export type ClientAvgAggregateInputType = {
+  export type PatientAvgAggregateInputType = {
     id?: true
   }
 
-  export type ClientSumAggregateInputType = {
+  export type PatientSumAggregateInputType = {
     id?: true
   }
 
-  export type ClientMinAggregateInputType = {
+  export type PatientMinAggregateInputType = {
     id?: true
     name?: true
     lastName?: true
@@ -941,10 +944,11 @@ export namespace Prisma {
     sex?: true
     birthday?: true
     email?: true
+    registration?: true
     notes?: true
   }
 
-  export type ClientMaxAggregateInputType = {
+  export type PatientMaxAggregateInputType = {
     id?: true
     name?: true
     lastName?: true
@@ -952,10 +956,11 @@ export namespace Prisma {
     sex?: true
     birthday?: true
     email?: true
+    registration?: true
     notes?: true
   }
 
-  export type ClientCountAggregateInputType = {
+  export type PatientCountAggregateInputType = {
     id?: true
     name?: true
     lastName?: true
@@ -963,97 +968,98 @@ export namespace Prisma {
     sex?: true
     birthday?: true
     email?: true
+    registration?: true
     notes?: true
     _all?: true
   }
 
-  export type ClientAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Client to aggregate.
+     * Filter which Patient to aggregate.
      */
-    where?: ClientWhereInput
+    where?: PatientWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Clients to fetch.
+     * Determine the order of Patients to fetch.
      */
-    orderBy?: ClientOrderByWithRelationInput | ClientOrderByWithRelationInput[]
+    orderBy?: PatientOrderByWithRelationInput | PatientOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ClientWhereUniqueInput
+    cursor?: PatientWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Clients from the position of the cursor.
+     * Take `±n` Patients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Clients.
+     * Skip the first `n` Patients.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Clients
+     * Count returned Patients
     **/
-    _count?: true | ClientCountAggregateInputType
+    _count?: true | PatientCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: ClientAvgAggregateInputType
+    _avg?: PatientAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: ClientSumAggregateInputType
+    _sum?: PatientSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ClientMinAggregateInputType
+    _min?: PatientMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ClientMaxAggregateInputType
+    _max?: PatientMaxAggregateInputType
   }
 
-  export type GetClientAggregateType<T extends ClientAggregateArgs> = {
-        [P in keyof T & keyof AggregateClient]: P extends '_count' | 'count'
+  export type GetPatientAggregateType<T extends PatientAggregateArgs> = {
+        [P in keyof T & keyof AggregatePatient]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateClient[P]>
-      : GetScalarType<T[P], AggregateClient[P]>
+        : GetScalarType<T[P], AggregatePatient[P]>
+      : GetScalarType<T[P], AggregatePatient[P]>
   }
 
 
 
 
-  export type ClientGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ClientWhereInput
-    orderBy?: ClientOrderByWithAggregationInput | ClientOrderByWithAggregationInput[]
-    by: ClientScalarFieldEnum[] | ClientScalarFieldEnum
-    having?: ClientScalarWhereWithAggregatesInput
+  export type PatientGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PatientWhereInput
+    orderBy?: PatientOrderByWithAggregationInput | PatientOrderByWithAggregationInput[]
+    by: PatientScalarFieldEnum[] | PatientScalarFieldEnum
+    having?: PatientScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ClientCountAggregateInputType | true
-    _avg?: ClientAvgAggregateInputType
-    _sum?: ClientSumAggregateInputType
-    _min?: ClientMinAggregateInputType
-    _max?: ClientMaxAggregateInputType
+    _count?: PatientCountAggregateInputType | true
+    _avg?: PatientAvgAggregateInputType
+    _sum?: PatientSumAggregateInputType
+    _min?: PatientMinAggregateInputType
+    _max?: PatientMaxAggregateInputType
   }
 
-  export type ClientGroupByOutputType = {
+  export type PatientGroupByOutputType = {
     id: number
     name: string
     lastName: string
@@ -1061,29 +1067,30 @@ export namespace Prisma {
     sex: string | null
     birthday: string | null
     email: string | null
+    registration: string | null
     notes: string | null
-    _count: ClientCountAggregateOutputType | null
-    _avg: ClientAvgAggregateOutputType | null
-    _sum: ClientSumAggregateOutputType | null
-    _min: ClientMinAggregateOutputType | null
-    _max: ClientMaxAggregateOutputType | null
+    _count: PatientCountAggregateOutputType | null
+    _avg: PatientAvgAggregateOutputType | null
+    _sum: PatientSumAggregateOutputType | null
+    _min: PatientMinAggregateOutputType | null
+    _max: PatientMaxAggregateOutputType | null
   }
 
-  type GetClientGroupByPayload<T extends ClientGroupByArgs> = Prisma.PrismaPromise<
+  type GetPatientGroupByPayload<T extends PatientGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ClientGroupByOutputType, T['by']> &
+      PickEnumerable<PatientGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ClientGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PatientGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ClientGroupByOutputType[P]>
-            : GetScalarType<T[P], ClientGroupByOutputType[P]>
+              : GetScalarType<T[P], PatientGroupByOutputType[P]>
+            : GetScalarType<T[P], PatientGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ClientSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PatientSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     lastName?: boolean
@@ -1091,10 +1098,11 @@ export namespace Prisma {
     sex?: boolean
     birthday?: boolean
     email?: boolean
+    registration?: boolean
     notes?: boolean
-  }, ExtArgs["result"]["client"]>
+  }, ExtArgs["result"]["patient"]>
 
-  export type ClientSelectScalar = {
+  export type PatientSelectScalar = {
     id?: boolean
     name?: boolean
     lastName?: boolean
@@ -1102,12 +1110,13 @@ export namespace Prisma {
     sex?: boolean
     birthday?: boolean
     email?: boolean
+    registration?: boolean
     notes?: boolean
   }
 
 
-  export type $ClientPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Client"
+  export type $PatientPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Patient"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1117,161 +1126,162 @@ export namespace Prisma {
       sex: string | null
       birthday: string | null
       email: string | null
+      registration: string | null
       notes: string | null
-    }, ExtArgs["result"]["client"]>
+    }, ExtArgs["result"]["patient"]>
     composites: {}
   }
 
 
-  type ClientGetPayload<S extends boolean | null | undefined | ClientDefaultArgs> = $Result.GetResult<Prisma.$ClientPayload, S>
+  type PatientGetPayload<S extends boolean | null | undefined | PatientDefaultArgs> = $Result.GetResult<Prisma.$PatientPayload, S>
 
-  type ClientCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<ClientFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: ClientCountAggregateInputType | true
+  type PatientCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PatientFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PatientCountAggregateInputType | true
     }
 
-  export interface ClientDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Client'], meta: { name: 'Client' } }
+  export interface PatientDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Patient'], meta: { name: 'Patient' } }
     /**
-     * Find zero or one Client that matches the filter.
-     * @param {ClientFindUniqueArgs} args - Arguments to find a Client
+     * Find zero or one Patient that matches the filter.
+     * @param {PatientFindUniqueArgs} args - Arguments to find a Patient
      * @example
-     * // Get one Client
-     * const client = await prisma.client.findUnique({
+     * // Get one Patient
+     * const patient = await prisma.patient.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends ClientFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, ClientFindUniqueArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends PatientFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PatientFindUniqueArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Client that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Patient that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {ClientFindUniqueOrThrowArgs} args - Arguments to find a Client
+     * @param {PatientFindUniqueOrThrowArgs} args - Arguments to find a Patient
      * @example
-     * // Get one Client
-     * const client = await prisma.client.findUniqueOrThrow({
+     * // Get one Patient
+     * const patient = await prisma.patient.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends ClientFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ClientFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends PatientFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PatientFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first Client that matches the filter.
+     * Find the first Patient that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ClientFindFirstArgs} args - Arguments to find a Client
+     * @param {PatientFindFirstArgs} args - Arguments to find a Patient
      * @example
-     * // Get one Client
-     * const client = await prisma.client.findFirst({
+     * // Get one Patient
+     * const patient = await prisma.patient.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends ClientFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, ClientFindFirstArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends PatientFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PatientFindFirstArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first Client that matches the filter or
+     * Find the first Patient that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ClientFindFirstOrThrowArgs} args - Arguments to find a Client
+     * @param {PatientFindFirstOrThrowArgs} args - Arguments to find a Patient
      * @example
-     * // Get one Client
-     * const client = await prisma.client.findFirstOrThrow({
+     * // Get one Patient
+     * const patient = await prisma.patient.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends ClientFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ClientFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends PatientFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PatientFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more Clients that matches the filter.
+     * Find zero or more Patients that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ClientFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {PatientFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Clients
-     * const clients = await prisma.client.findMany()
+     * // Get all Patients
+     * const patients = await prisma.patient.findMany()
      * 
-     * // Get first 10 Clients
-     * const clients = await prisma.client.findMany({ take: 10 })
+     * // Get first 10 Patients
+     * const patients = await prisma.patient.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const clientWithIdOnly = await prisma.client.findMany({ select: { id: true } })
+     * const patientWithIdOnly = await prisma.patient.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends ClientFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ClientFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends PatientFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PatientFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a Client.
-     * @param {ClientCreateArgs} args - Arguments to create a Client.
+     * Create a Patient.
+     * @param {PatientCreateArgs} args - Arguments to create a Patient.
      * @example
-     * // Create one Client
-     * const Client = await prisma.client.create({
+     * // Create one Patient
+     * const Patient = await prisma.patient.create({
      *   data: {
-     *     // ... data to create a Client
+     *     // ... data to create a Patient
      *   }
      * })
      * 
     **/
-    create<T extends ClientCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ClientCreateArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends PatientCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PatientCreateArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Create many Clients.
-     *     @param {ClientCreateManyArgs} args - Arguments to create many Clients.
+     * Create many Patients.
+     *     @param {PatientCreateManyArgs} args - Arguments to create many Patients.
      *     @example
-     *     // Create many Clients
-     *     const client = await prisma.client.createMany({
+     *     // Create many Patients
+     *     const patient = await prisma.patient.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends ClientCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ClientCreateManyArgs<ExtArgs>>
+    createMany<T extends PatientCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PatientCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Client.
-     * @param {ClientDeleteArgs} args - Arguments to delete one Client.
+     * Delete a Patient.
+     * @param {PatientDeleteArgs} args - Arguments to delete one Patient.
      * @example
-     * // Delete one Client
-     * const Client = await prisma.client.delete({
+     * // Delete one Patient
+     * const Patient = await prisma.patient.delete({
      *   where: {
-     *     // ... filter to delete one Client
+     *     // ... filter to delete one Patient
      *   }
      * })
      * 
     **/
-    delete<T extends ClientDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ClientDeleteArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends PatientDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PatientDeleteArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one Client.
-     * @param {ClientUpdateArgs} args - Arguments to update one Client.
+     * Update one Patient.
+     * @param {PatientUpdateArgs} args - Arguments to update one Patient.
      * @example
-     * // Update one Client
-     * const client = await prisma.client.update({
+     * // Update one Patient
+     * const patient = await prisma.patient.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1281,34 +1291,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends ClientUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ClientUpdateArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends PatientUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PatientUpdateArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more Clients.
-     * @param {ClientDeleteManyArgs} args - Arguments to filter Clients to delete.
+     * Delete zero or more Patients.
+     * @param {PatientDeleteManyArgs} args - Arguments to filter Patients to delete.
      * @example
-     * // Delete a few Clients
-     * const { count } = await prisma.client.deleteMany({
+     * // Delete a few Patients
+     * const { count } = await prisma.patient.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends ClientDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ClientDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends PatientDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PatientDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Clients.
+     * Update zero or more Patients.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ClientUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {PatientUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Clients
-     * const client = await prisma.client.updateMany({
+     * // Update many Patients
+     * const patient = await prisma.patient.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1318,59 +1328,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends ClientUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ClientUpdateManyArgs<ExtArgs>>
+    updateMany<T extends PatientUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PatientUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Client.
-     * @param {ClientUpsertArgs} args - Arguments to update or create a Client.
+     * Create or update one Patient.
+     * @param {PatientUpsertArgs} args - Arguments to update or create a Patient.
      * @example
-     * // Update or create a Client
-     * const client = await prisma.client.upsert({
+     * // Update or create a Patient
+     * const patient = await prisma.patient.upsert({
      *   create: {
-     *     // ... data to create a Client
+     *     // ... data to create a Patient
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Client we want to update
+     *     // ... the filter for the Patient we want to update
      *   }
      * })
     **/
-    upsert<T extends ClientUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ClientUpsertArgs<ExtArgs>>
-    ): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends PatientUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PatientUpsertArgs<ExtArgs>>
+    ): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of Clients.
+     * Count the number of Patients.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ClientCountArgs} args - Arguments to filter Clients to count.
+     * @param {PatientCountArgs} args - Arguments to filter Patients to count.
      * @example
-     * // Count the number of Clients
-     * const count = await prisma.client.count({
+     * // Count the number of Patients
+     * const count = await prisma.patient.count({
      *   where: {
-     *     // ... the filter for the Clients we want to count
+     *     // ... the filter for the Patients we want to count
      *   }
      * })
     **/
-    count<T extends ClientCountArgs>(
-      args?: Subset<T, ClientCountArgs>,
+    count<T extends PatientCountArgs>(
+      args?: Subset<T, PatientCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ClientCountAggregateOutputType>
+          : GetScalarType<T['select'], PatientCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Client.
+     * Allows you to perform aggregations operations on a Patient.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ClientAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PatientAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1390,13 +1400,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ClientAggregateArgs>(args: Subset<T, ClientAggregateArgs>): Prisma.PrismaPromise<GetClientAggregateType<T>>
+    aggregate<T extends PatientAggregateArgs>(args: Subset<T, PatientAggregateArgs>): Prisma.PrismaPromise<GetPatientAggregateType<T>>
 
     /**
-     * Group by Client.
+     * Group by Patient.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ClientGroupByArgs} args - Group by arguments.
+     * @param {PatientGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1411,14 +1421,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ClientGroupByArgs,
+      T extends PatientGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ClientGroupByArgs['orderBy'] }
-        : { orderBy?: ClientGroupByArgs['orderBy'] },
+        ? { orderBy: PatientGroupByArgs['orderBy'] }
+        : { orderBy?: PatientGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1467,20 +1477,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ClientGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClientGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, PatientGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPatientGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Client model
+   * Fields of the Patient model
    */
-  readonly fields: ClientFieldRefs;
+  readonly fields: PatientFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Client.
+   * The delegate class that acts as a "Promise-like" for Patient.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ClientClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PatientClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
 
@@ -1509,300 +1519,301 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Client model
+   * Fields of the Patient model
    */ 
-  interface ClientFieldRefs {
-    readonly id: FieldRef<"Client", 'Int'>
-    readonly name: FieldRef<"Client", 'String'>
-    readonly lastName: FieldRef<"Client", 'String'>
-    readonly phone: FieldRef<"Client", 'String'>
-    readonly sex: FieldRef<"Client", 'String'>
-    readonly birthday: FieldRef<"Client", 'String'>
-    readonly email: FieldRef<"Client", 'String'>
-    readonly notes: FieldRef<"Client", 'String'>
+  interface PatientFieldRefs {
+    readonly id: FieldRef<"Patient", 'Int'>
+    readonly name: FieldRef<"Patient", 'String'>
+    readonly lastName: FieldRef<"Patient", 'String'>
+    readonly phone: FieldRef<"Patient", 'String'>
+    readonly sex: FieldRef<"Patient", 'String'>
+    readonly birthday: FieldRef<"Patient", 'String'>
+    readonly email: FieldRef<"Patient", 'String'>
+    readonly registration: FieldRef<"Patient", 'String'>
+    readonly notes: FieldRef<"Patient", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * Client findUnique
+   * Patient findUnique
    */
-  export type ClientFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * Filter, which Client to fetch.
+     * Filter, which Patient to fetch.
      */
-    where: ClientWhereUniqueInput
+    where: PatientWhereUniqueInput
   }
 
 
   /**
-   * Client findUniqueOrThrow
+   * Patient findUniqueOrThrow
    */
-  export type ClientFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * Filter, which Client to fetch.
+     * Filter, which Patient to fetch.
      */
-    where: ClientWhereUniqueInput
+    where: PatientWhereUniqueInput
   }
 
 
   /**
-   * Client findFirst
+   * Patient findFirst
    */
-  export type ClientFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * Filter, which Client to fetch.
+     * Filter, which Patient to fetch.
      */
-    where?: ClientWhereInput
+    where?: PatientWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Clients to fetch.
+     * Determine the order of Patients to fetch.
      */
-    orderBy?: ClientOrderByWithRelationInput | ClientOrderByWithRelationInput[]
+    orderBy?: PatientOrderByWithRelationInput | PatientOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Clients.
+     * Sets the position for searching for Patients.
      */
-    cursor?: ClientWhereUniqueInput
+    cursor?: PatientWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Clients from the position of the cursor.
+     * Take `±n` Patients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Clients.
+     * Skip the first `n` Patients.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Clients.
+     * Filter by unique combinations of Patients.
      */
-    distinct?: ClientScalarFieldEnum | ClientScalarFieldEnum[]
+    distinct?: PatientScalarFieldEnum | PatientScalarFieldEnum[]
   }
 
 
   /**
-   * Client findFirstOrThrow
+   * Patient findFirstOrThrow
    */
-  export type ClientFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * Filter, which Client to fetch.
+     * Filter, which Patient to fetch.
      */
-    where?: ClientWhereInput
+    where?: PatientWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Clients to fetch.
+     * Determine the order of Patients to fetch.
      */
-    orderBy?: ClientOrderByWithRelationInput | ClientOrderByWithRelationInput[]
+    orderBy?: PatientOrderByWithRelationInput | PatientOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Clients.
+     * Sets the position for searching for Patients.
      */
-    cursor?: ClientWhereUniqueInput
+    cursor?: PatientWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Clients from the position of the cursor.
+     * Take `±n` Patients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Clients.
+     * Skip the first `n` Patients.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Clients.
+     * Filter by unique combinations of Patients.
      */
-    distinct?: ClientScalarFieldEnum | ClientScalarFieldEnum[]
+    distinct?: PatientScalarFieldEnum | PatientScalarFieldEnum[]
   }
 
 
   /**
-   * Client findMany
+   * Patient findMany
    */
-  export type ClientFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * Filter, which Clients to fetch.
+     * Filter, which Patients to fetch.
      */
-    where?: ClientWhereInput
+    where?: PatientWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Clients to fetch.
+     * Determine the order of Patients to fetch.
      */
-    orderBy?: ClientOrderByWithRelationInput | ClientOrderByWithRelationInput[]
+    orderBy?: PatientOrderByWithRelationInput | PatientOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Clients.
+     * Sets the position for listing Patients.
      */
-    cursor?: ClientWhereUniqueInput
+    cursor?: PatientWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Clients from the position of the cursor.
+     * Take `±n` Patients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Clients.
+     * Skip the first `n` Patients.
      */
     skip?: number
-    distinct?: ClientScalarFieldEnum | ClientScalarFieldEnum[]
+    distinct?: PatientScalarFieldEnum | PatientScalarFieldEnum[]
   }
 
 
   /**
-   * Client create
+   * Patient create
    */
-  export type ClientCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * The data needed to create a Client.
+     * The data needed to create a Patient.
      */
-    data: XOR<ClientCreateInput, ClientUncheckedCreateInput>
+    data: XOR<PatientCreateInput, PatientUncheckedCreateInput>
   }
 
 
   /**
-   * Client createMany
+   * Patient createMany
    */
-  export type ClientCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Clients.
+     * The data used to create many Patients.
      */
-    data: ClientCreateManyInput | ClientCreateManyInput[]
+    data: PatientCreateManyInput | PatientCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Client update
+   * Patient update
    */
-  export type ClientUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * The data needed to update a Client.
+     * The data needed to update a Patient.
      */
-    data: XOR<ClientUpdateInput, ClientUncheckedUpdateInput>
+    data: XOR<PatientUpdateInput, PatientUncheckedUpdateInput>
     /**
-     * Choose, which Client to update.
+     * Choose, which Patient to update.
      */
-    where: ClientWhereUniqueInput
+    where: PatientWhereUniqueInput
   }
 
 
   /**
-   * Client updateMany
+   * Patient updateMany
    */
-  export type ClientUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Clients.
+     * The data used to update Patients.
      */
-    data: XOR<ClientUpdateManyMutationInput, ClientUncheckedUpdateManyInput>
+    data: XOR<PatientUpdateManyMutationInput, PatientUncheckedUpdateManyInput>
     /**
-     * Filter which Clients to update
+     * Filter which Patients to update
      */
-    where?: ClientWhereInput
+    where?: PatientWhereInput
   }
 
 
   /**
-   * Client upsert
+   * Patient upsert
    */
-  export type ClientUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * The filter to search for the Client to update in case it exists.
+     * The filter to search for the Patient to update in case it exists.
      */
-    where: ClientWhereUniqueInput
+    where: PatientWhereUniqueInput
     /**
-     * In case the Client found by the `where` argument doesn't exist, create a new Client with this data.
+     * In case the Patient found by the `where` argument doesn't exist, create a new Patient with this data.
      */
-    create: XOR<ClientCreateInput, ClientUncheckedCreateInput>
+    create: XOR<PatientCreateInput, PatientUncheckedCreateInput>
     /**
-     * In case the Client was found with the provided `where` argument, update it with this data.
+     * In case the Patient was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ClientUpdateInput, ClientUncheckedUpdateInput>
+    update: XOR<PatientUpdateInput, PatientUncheckedUpdateInput>
   }
 
 
   /**
-   * Client delete
+   * Patient delete
    */
-  export type ClientDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
     /**
-     * Filter which Client to delete.
+     * Filter which Patient to delete.
      */
-    where: ClientWhereUniqueInput
+    where: PatientWhereUniqueInput
   }
 
 
   /**
-   * Client deleteMany
+   * Patient deleteMany
    */
-  export type ClientDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Clients to delete
+     * Filter which Patients to delete
      */
-    where?: ClientWhereInput
+    where?: PatientWhereInput
   }
 
 
   /**
-   * Client without action
+   * Patient without action
    */
-  export type ClientDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PatientDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the Patient
      */
-    select?: ClientSelect<ExtArgs> | null
+    select?: PatientSelect<ExtArgs> | null
   }
 
 
@@ -1821,7 +1832,7 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const ClientScalarFieldEnum: {
+  export const PatientScalarFieldEnum: {
     id: 'id',
     name: 'name',
     lastName: 'lastName',
@@ -1829,10 +1840,11 @@ export namespace Prisma {
     sex: 'sex',
     birthday: 'birthday',
     email: 'email',
+    registration: 'registration',
     notes: 'notes'
   };
 
-  export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
+  export type PatientScalarFieldEnum = (typeof PatientScalarFieldEnum)[keyof typeof PatientScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1909,21 +1921,22 @@ export namespace Prisma {
    */
 
 
-  export type ClientWhereInput = {
-    AND?: ClientWhereInput | ClientWhereInput[]
-    OR?: ClientWhereInput[]
-    NOT?: ClientWhereInput | ClientWhereInput[]
-    id?: IntFilter<"Client"> | number
-    name?: StringFilter<"Client"> | string
-    lastName?: StringFilter<"Client"> | string
-    phone?: StringNullableFilter<"Client"> | string | null
-    sex?: StringNullableFilter<"Client"> | string | null
-    birthday?: StringNullableFilter<"Client"> | string | null
-    email?: StringNullableFilter<"Client"> | string | null
-    notes?: StringNullableFilter<"Client"> | string | null
+  export type PatientWhereInput = {
+    AND?: PatientWhereInput | PatientWhereInput[]
+    OR?: PatientWhereInput[]
+    NOT?: PatientWhereInput | PatientWhereInput[]
+    id?: IntFilter<"Patient"> | number
+    name?: StringFilter<"Patient"> | string
+    lastName?: StringFilter<"Patient"> | string
+    phone?: StringNullableFilter<"Patient"> | string | null
+    sex?: StringNullableFilter<"Patient"> | string | null
+    birthday?: StringNullableFilter<"Patient"> | string | null
+    email?: StringNullableFilter<"Patient"> | string | null
+    registration?: StringNullableFilter<"Patient"> | string | null
+    notes?: StringNullableFilter<"Patient"> | string | null
   }
 
-  export type ClientOrderByWithRelationInput = {
+  export type PatientOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     lastName?: SortOrder
@@ -1931,24 +1944,26 @@ export namespace Prisma {
     sex?: SortOrderInput | SortOrder
     birthday?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    registration?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
   }
 
-  export type ClientWhereUniqueInput = Prisma.AtLeast<{
+  export type PatientWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: ClientWhereInput | ClientWhereInput[]
-    OR?: ClientWhereInput[]
-    NOT?: ClientWhereInput | ClientWhereInput[]
-    name?: StringFilter<"Client"> | string
-    lastName?: StringFilter<"Client"> | string
-    phone?: StringNullableFilter<"Client"> | string | null
-    sex?: StringNullableFilter<"Client"> | string | null
-    birthday?: StringNullableFilter<"Client"> | string | null
-    email?: StringNullableFilter<"Client"> | string | null
-    notes?: StringNullableFilter<"Client"> | string | null
+    AND?: PatientWhereInput | PatientWhereInput[]
+    OR?: PatientWhereInput[]
+    NOT?: PatientWhereInput | PatientWhereInput[]
+    name?: StringFilter<"Patient"> | string
+    lastName?: StringFilter<"Patient"> | string
+    phone?: StringNullableFilter<"Patient"> | string | null
+    sex?: StringNullableFilter<"Patient"> | string | null
+    birthday?: StringNullableFilter<"Patient"> | string | null
+    email?: StringNullableFilter<"Patient"> | string | null
+    registration?: StringNullableFilter<"Patient"> | string | null
+    notes?: StringNullableFilter<"Patient"> | string | null
   }, "id">
 
-  export type ClientOrderByWithAggregationInput = {
+  export type PatientOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     lastName?: SortOrder
@@ -1956,39 +1971,42 @@ export namespace Prisma {
     sex?: SortOrderInput | SortOrder
     birthday?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    registration?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
-    _count?: ClientCountOrderByAggregateInput
-    _avg?: ClientAvgOrderByAggregateInput
-    _max?: ClientMaxOrderByAggregateInput
-    _min?: ClientMinOrderByAggregateInput
-    _sum?: ClientSumOrderByAggregateInput
+    _count?: PatientCountOrderByAggregateInput
+    _avg?: PatientAvgOrderByAggregateInput
+    _max?: PatientMaxOrderByAggregateInput
+    _min?: PatientMinOrderByAggregateInput
+    _sum?: PatientSumOrderByAggregateInput
   }
 
-  export type ClientScalarWhereWithAggregatesInput = {
-    AND?: ClientScalarWhereWithAggregatesInput | ClientScalarWhereWithAggregatesInput[]
-    OR?: ClientScalarWhereWithAggregatesInput[]
-    NOT?: ClientScalarWhereWithAggregatesInput | ClientScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Client"> | number
-    name?: StringWithAggregatesFilter<"Client"> | string
-    lastName?: StringWithAggregatesFilter<"Client"> | string
-    phone?: StringNullableWithAggregatesFilter<"Client"> | string | null
-    sex?: StringNullableWithAggregatesFilter<"Client"> | string | null
-    birthday?: StringNullableWithAggregatesFilter<"Client"> | string | null
-    email?: StringNullableWithAggregatesFilter<"Client"> | string | null
-    notes?: StringNullableWithAggregatesFilter<"Client"> | string | null
+  export type PatientScalarWhereWithAggregatesInput = {
+    AND?: PatientScalarWhereWithAggregatesInput | PatientScalarWhereWithAggregatesInput[]
+    OR?: PatientScalarWhereWithAggregatesInput[]
+    NOT?: PatientScalarWhereWithAggregatesInput | PatientScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Patient"> | number
+    name?: StringWithAggregatesFilter<"Patient"> | string
+    lastName?: StringWithAggregatesFilter<"Patient"> | string
+    phone?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    sex?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    birthday?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    email?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    registration?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"Patient"> | string | null
   }
 
-  export type ClientCreateInput = {
+  export type PatientCreateInput = {
     name: string
     lastName: string
     phone?: string | null
     sex?: string | null
     birthday?: string | null
     email?: string | null
+    registration?: string | null
     notes?: string | null
   }
 
-  export type ClientUncheckedCreateInput = {
+  export type PatientUncheckedCreateInput = {
     id?: number
     name: string
     lastName: string
@@ -1996,20 +2014,22 @@ export namespace Prisma {
     sex?: string | null
     birthday?: string | null
     email?: string | null
+    registration?: string | null
     notes?: string | null
   }
 
-  export type ClientUpdateInput = {
+  export type PatientUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableStringFieldUpdateOperationsInput | string | null
     birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    registration?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ClientUncheckedUpdateInput = {
+  export type PatientUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
@@ -2017,10 +2037,11 @@ export namespace Prisma {
     sex?: NullableStringFieldUpdateOperationsInput | string | null
     birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    registration?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ClientCreateManyInput = {
+  export type PatientCreateManyInput = {
     id?: number
     name: string
     lastName: string
@@ -2028,20 +2049,22 @@ export namespace Prisma {
     sex?: string | null
     birthday?: string | null
     email?: string | null
+    registration?: string | null
     notes?: string | null
   }
 
-  export type ClientUpdateManyMutationInput = {
+  export type PatientUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableStringFieldUpdateOperationsInput | string | null
     birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    registration?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ClientUncheckedUpdateManyInput = {
+  export type PatientUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
@@ -2049,6 +2072,7 @@ export namespace Prisma {
     sex?: NullableStringFieldUpdateOperationsInput | string | null
     birthday?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    registration?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -2098,7 +2122,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type ClientCountOrderByAggregateInput = {
+  export type PatientCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     lastName?: SortOrder
@@ -2106,25 +2130,15 @@ export namespace Prisma {
     sex?: SortOrder
     birthday?: SortOrder
     email?: SortOrder
+    registration?: SortOrder
     notes?: SortOrder
   }
 
-  export type ClientAvgOrderByAggregateInput = {
+  export type PatientAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type ClientMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    lastName?: SortOrder
-    phone?: SortOrder
-    sex?: SortOrder
-    birthday?: SortOrder
-    email?: SortOrder
-    notes?: SortOrder
-  }
-
-  export type ClientMinOrderByAggregateInput = {
+  export type PatientMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     lastName?: SortOrder
@@ -2132,10 +2146,23 @@ export namespace Prisma {
     sex?: SortOrder
     birthday?: SortOrder
     email?: SortOrder
+    registration?: SortOrder
     notes?: SortOrder
   }
 
-  export type ClientSumOrderByAggregateInput = {
+  export type PatientMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastName?: SortOrder
+    phone?: SortOrder
+    sex?: SortOrder
+    birthday?: SortOrder
+    email?: SortOrder
+    registration?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type PatientSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -2324,9 +2351,9 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
-     * @deprecated Use ClientDefaultArgs instead
+     * @deprecated Use PatientDefaultArgs instead
      */
-    export type ClientArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClientDefaultArgs<ExtArgs>
+    export type PatientArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PatientDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

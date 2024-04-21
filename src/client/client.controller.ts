@@ -9,7 +9,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ClientService } from './client.service';
-import { Client } from 'prisma-client';
+import { Patient } from 'prisma-client';
 
 @Controller('client')
 export class ClientController {
@@ -33,9 +33,9 @@ export class ClientController {
   }
 
   @Post()
-  async createClient(@Body() Client_singular: Client) {
+  async createClient(@Body() Client_singular: Patient) {
     console.log(Client_singular);
-    
+
     try {
       return this.clientService.addClient(Client_singular);
     } catch (error) {
@@ -46,7 +46,7 @@ export class ClientController {
   @Put()
   async updateClient_singular(
     @Param('id') id: string,
-    @Body() Client_singular: Client,
+    @Body() Client_singular: Patient,
   ) {
     try {
       return this.clientService.updateClient(id, Client_singular);
