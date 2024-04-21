@@ -129,7 +129,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Andersseen\\WEBS\\my-projects\\docs\\cemeresi-docs-back\\prisma-client",
+      "value": "C:\\Users\\andri\\Andersseen\\Web\\Work\\Alberto\\cemeresi-docs-back\\prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -146,7 +146,9 @@ const config = {
         "value": "linux-musl-openssl-3.0.x"
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "driverAdapters"
+    ],
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -160,7 +162,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -169,8 +170,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\"]\r\n  output   = \"../prisma-client\" \r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\n\r\nmodel Client{\r\n  id        Int  @id @default(autoincrement())\r\n  name      String\r\n  lastName  String\r\n  phone     String?\r\n  sex       String?\r\n  birthday  String?\r\n  email     String? \r\n  notes     String?\r\n}",
-  "inlineSchemaHash": "a7afa131f10e8f4c52b4b2d2b53e19a29200ea85f707ade8b1f8a64ddafedf51",
+  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  previewFeatures = [\"driverAdapters\"]\r\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\"]\r\n  output   = \"../prisma-client\" \r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\n\r\nmodel Client{\r\n  id        Int  @id @default(autoincrement())\r\n  name      String\r\n  lastName  String\r\n  phone     String?\r\n  sex       String?\r\n  birthday  String?\r\n  email     String? \r\n  notes     String?\r\n}",
+  "inlineSchemaHash": "b8933902b3c6d76ff667f248edeabbe1b7258d87b3f6aa2004498a820820b2a9",
   "copyEngine": true
 }
 

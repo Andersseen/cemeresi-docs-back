@@ -34,6 +34,8 @@ export class ClientController {
 
   @Post()
   async createClient(@Body() Client_singular: Client) {
+    console.log(Client_singular);
+    
     try {
       return this.clientService.addClient(Client_singular);
     } catch (error) {

@@ -8,11 +8,15 @@ import {
   UploadedFile,
   Get,
   Res,
+  NotFoundException,
 } from '@nestjs/common';
-import { lstat } from 'fs';
+import { ExcelService } from './excel.service';
+import { Client } from 'prisma-client';
 
 @Controller('excel')
 export class ExcelController {
+  constructor(private excelService: ExcelService) {}
+
   @Post('import')
   @UseInterceptors(FileInterceptor('file'))
   async importExcel(@UploadedFile() file) {
@@ -30,19 +34,23 @@ export class ExcelController {
     // Mapear los nombres de las claves en el JSON
     const mappedData = rawData.map((item: any) => ({
       id: item['Nº Cliente'],
-      name: item['Nombre'],
-      lastName: item['Primer apellido'],
-      sex: item['Sexo'],
-      birthday: item['Fecha nacimiento'],
-      phone: item['Teléfono'],
-      email: item['E-mail'],
-      notes: item['Notas'],
+      name: item['Nombre'] ? item['Nombre'] : '',
+      lastName: item['Primer apellido'] ?item['Primer apellido'] : '' ,
+      sex: item['Sexo'] ? item['Sexo'] : null,
+      birthday: item['Fecha nacimiento'] ? item['Fecha nacimiento'].toString() : null,
+      phone: item['Teléfono'] ? item['Teléfono'].toString() : null,
+      email: item['E-mail']? item['E-mail'].toString() : null,
+      notes: item['Notas'] ? item['Notas'] :null,
     }));
 
     // Aquí puedes manejar los datos importados, por ejemplo, guardarlos en la base de datos o procesarlos de alguna otra manera
-    console.log('Datos importados:', mappedData);
+    try {
+      return this.excelService.addManyClients(mappedData);
+    } catch (error) {
+      throw new NotFoundException('Patients could not be saved');
+    }
 
-    return { message: 'Datos importados correctamente' };
+    // return { message: 'Datos importados correctamente' };
   }
 
   @Get('export')

@@ -16,6 +16,9 @@ export class ClientService {
   async addClient(data: Client): Promise<Client> {
     return this.prisma.client.create({ data });
   }
+  async addManyClients(data: Client[]) {    
+    return this.prisma.client.createMany({ data:[...data],skipDuplicates: true, });
+  }
   async updateClient(id: string, data: Client): Promise<Client> {
     const numberId = Number(id);
     return this.prisma.client.update({
