@@ -90,13 +90,18 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.PatientScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  lastName: 'lastName',
-  phone: 'phone',
-  sex: 'sex',
-  birthday: 'birthday',
+  firstLastName: 'firstLastName',
+  secondLastName: 'secondLastName',
   email: 'email',
-  registration: 'registration',
+  phone: 'phone',
+  birthday: 'birthday',
   notes: 'notes'
+};
+
+exports.Prisma.HistoricalScalarFieldEnum = {
+  id: 'id',
+  patientId: 'patientId',
+  history: 'history'
 };
 
 exports.Prisma.SortOrder = {
@@ -116,7 +121,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Patient: 'Patient'
+  Patient: 'Patient',
+  Historical: 'Historical'
 };
 /**
  * Create the Client
@@ -171,13 +177,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  previewFeatures = [\"driverAdapters\"]\r\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\"]\r\n  output   = \"../prisma-client\" \r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\n\r\nmodel Patient{\r\n  id                Int  @id @default(autoincrement())\r\n  name              String\r\n  lastName          String\r\n  phone             String?\r\n  sex               String?\r\n  birthday          String?\r\n  email             String? \r\n  registration      String?\r\n  notes             String?\r\n}",
-  "inlineSchemaHash": "8ddd989327e26c238f97fb53ea2d9a082ac0dcac0801a8d28b7c9b3e26f59b61",
+  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  previewFeatures = [\"driverAdapters\"]\r\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\"]\r\n  output   = \"../prisma-client\" \r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\n\r\nmodel Patient{\r\n  id                Int  @id @default(autoincrement())\r\n  name              String\r\n  firstLastName     String\r\n  secondLastName    String?\r\n  email             String? \r\n  phone             String?\r\n  birthday          String?\r\n  notes             String?\r\n  historical        Historical?\r\n\r\n}\r\n\r\n\r\nmodel Historical {\r\n  id               Int  @id @default(autoincrement())\r\n  patient          Patient @relation(fields: [patientId], references: [id])\r\n  patientId        Int @unique\r\n  history          String @db.Text\r\n}",
+  "inlineSchemaHash": "54ec35c355df1ef3e8b39388ca644739f49c41537b44970e0f8c865f95ebe045",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Patient\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sex\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"birthday\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"registration\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"notes\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Patient\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstLastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"secondLastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"birthday\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"notes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"historical\",\"kind\":\"object\",\"type\":\"Historical\",\"relationName\":\"HistoricalToPatient\"}],\"dbName\":null},\"Historical\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"patient\",\"kind\":\"object\",\"type\":\"Patient\",\"relationName\":\"HistoricalToPatient\"},{\"name\":\"patientId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"history\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: () => require('./query_engine_bg.js'),

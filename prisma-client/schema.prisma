@@ -14,11 +14,20 @@ datasource db {
 model Patient{
   id                Int  @id @default(autoincrement())
   name              String
-  lastName          String
-  phone             String?
-  sex               String?
-  birthday          String?
+  firstLastName     String
+  secondLastName    String?
   email             String? 
-  registration      String?
+  phone             String?
+  birthday          String?
   notes             String?
+  historical        Historical?
+
+}
+
+
+model Historical {
+  id               Int  @id @default(autoincrement())
+  patient          Patient @relation(fields: [patientId], references: [id])
+  patientId        Int @unique
+  history          String @db.Text
 }

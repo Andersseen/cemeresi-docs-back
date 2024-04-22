@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type Patient = $Result.DefaultSelection<Prisma.$PatientPayload>
+/**
+ * Model Historical
+ * 
+ */
+export type Historical = $Result.DefaultSelection<Prisma.$HistoricalPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -150,6 +155,16 @@ export class PrismaClient<
     * ```
     */
   get patient(): Prisma.PatientDelegate<ExtArgs>;
+
+  /**
+   * `prisma.historical`: Exposes CRUD operations for the **Historical** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Historicals
+    * const historicals = await prisma.historical.findMany()
+    * ```
+    */
+  get historical(): Prisma.HistoricalDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -620,7 +635,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Patient: 'Patient'
+    Patient: 'Patient',
+    Historical: 'Historical'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -637,7 +653,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'patient'
+      modelProps: 'patient' | 'historical'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -704,6 +720,72 @@ export namespace Prisma {
           count: {
             args: Prisma.PatientCountArgs<ExtArgs>,
             result: $Utils.Optional<PatientCountAggregateOutputType> | number
+          }
+        }
+      }
+      Historical: {
+        payload: Prisma.$HistoricalPayload<ExtArgs>
+        fields: Prisma.HistoricalFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HistoricalFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HistoricalFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload>
+          }
+          findFirst: {
+            args: Prisma.HistoricalFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HistoricalFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload>
+          }
+          findMany: {
+            args: Prisma.HistoricalFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload>[]
+          }
+          create: {
+            args: Prisma.HistoricalCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload>
+          }
+          createMany: {
+            args: Prisma.HistoricalCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.HistoricalDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload>
+          }
+          update: {
+            args: Prisma.HistoricalUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload>
+          }
+          deleteMany: {
+            args: Prisma.HistoricalDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HistoricalUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.HistoricalUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$HistoricalPayload>
+          }
+          aggregate: {
+            args: Prisma.HistoricalAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateHistorical>
+          }
+          groupBy: {
+            args: Prisma.HistoricalGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<HistoricalGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HistoricalCountArgs<ExtArgs>,
+            result: $Utils.Optional<HistoricalCountAggregateOutputType> | number
           }
         }
       }
@@ -893,36 +975,33 @@ export namespace Prisma {
   export type PatientMinAggregateOutputType = {
     id: number | null
     name: string | null
-    lastName: string | null
-    phone: string | null
-    sex: string | null
-    birthday: string | null
+    firstLastName: string | null
+    secondLastName: string | null
     email: string | null
-    registration: string | null
+    phone: string | null
+    birthday: string | null
     notes: string | null
   }
 
   export type PatientMaxAggregateOutputType = {
     id: number | null
     name: string | null
-    lastName: string | null
-    phone: string | null
-    sex: string | null
-    birthday: string | null
+    firstLastName: string | null
+    secondLastName: string | null
     email: string | null
-    registration: string | null
+    phone: string | null
+    birthday: string | null
     notes: string | null
   }
 
   export type PatientCountAggregateOutputType = {
     id: number
     name: number
-    lastName: number
-    phone: number
-    sex: number
-    birthday: number
+    firstLastName: number
+    secondLastName: number
     email: number
-    registration: number
+    phone: number
+    birthday: number
     notes: number
     _all: number
   }
@@ -939,36 +1018,33 @@ export namespace Prisma {
   export type PatientMinAggregateInputType = {
     id?: true
     name?: true
-    lastName?: true
-    phone?: true
-    sex?: true
-    birthday?: true
+    firstLastName?: true
+    secondLastName?: true
     email?: true
-    registration?: true
+    phone?: true
+    birthday?: true
     notes?: true
   }
 
   export type PatientMaxAggregateInputType = {
     id?: true
     name?: true
-    lastName?: true
-    phone?: true
-    sex?: true
-    birthday?: true
+    firstLastName?: true
+    secondLastName?: true
     email?: true
-    registration?: true
+    phone?: true
+    birthday?: true
     notes?: true
   }
 
   export type PatientCountAggregateInputType = {
     id?: true
     name?: true
-    lastName?: true
-    phone?: true
-    sex?: true
-    birthday?: true
+    firstLastName?: true
+    secondLastName?: true
     email?: true
-    registration?: true
+    phone?: true
+    birthday?: true
     notes?: true
     _all?: true
   }
@@ -1062,12 +1138,11 @@ export namespace Prisma {
   export type PatientGroupByOutputType = {
     id: number
     name: string
-    lastName: string
-    phone: string | null
-    sex: string | null
-    birthday: string | null
+    firstLastName: string
+    secondLastName: string | null
     email: string | null
-    registration: string | null
+    phone: string | null
+    birthday: string | null
     notes: string | null
     _count: PatientCountAggregateOutputType | null
     _avg: PatientAvgAggregateOutputType | null
@@ -1093,40 +1168,44 @@ export namespace Prisma {
   export type PatientSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    lastName?: boolean
-    phone?: boolean
-    sex?: boolean
-    birthday?: boolean
+    firstLastName?: boolean
+    secondLastName?: boolean
     email?: boolean
-    registration?: boolean
+    phone?: boolean
+    birthday?: boolean
     notes?: boolean
+    historical?: boolean | Patient$historicalArgs<ExtArgs>
   }, ExtArgs["result"]["patient"]>
 
   export type PatientSelectScalar = {
     id?: boolean
     name?: boolean
-    lastName?: boolean
-    phone?: boolean
-    sex?: boolean
-    birthday?: boolean
+    firstLastName?: boolean
+    secondLastName?: boolean
     email?: boolean
-    registration?: boolean
+    phone?: boolean
+    birthday?: boolean
     notes?: boolean
+  }
+
+  export type PatientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    historical?: boolean | Patient$historicalArgs<ExtArgs>
   }
 
 
   export type $PatientPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Patient"
-    objects: {}
+    objects: {
+      historical: Prisma.$HistoricalPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      lastName: string
-      phone: string | null
-      sex: string | null
-      birthday: string | null
+      firstLastName: string
+      secondLastName: string | null
       email: string | null
-      registration: string | null
+      phone: string | null
+      birthday: string | null
       notes: string | null
     }, ExtArgs["result"]["patient"]>
     composites: {}
@@ -1493,6 +1572,7 @@ export namespace Prisma {
   export interface Prisma__PatientClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    historical<T extends Patient$historicalArgs<ExtArgs> = {}>(args?: Subset<T, Patient$historicalArgs<ExtArgs>>): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1524,12 +1604,11 @@ export namespace Prisma {
   interface PatientFieldRefs {
     readonly id: FieldRef<"Patient", 'Int'>
     readonly name: FieldRef<"Patient", 'String'>
-    readonly lastName: FieldRef<"Patient", 'String'>
-    readonly phone: FieldRef<"Patient", 'String'>
-    readonly sex: FieldRef<"Patient", 'String'>
-    readonly birthday: FieldRef<"Patient", 'String'>
+    readonly firstLastName: FieldRef<"Patient", 'String'>
+    readonly secondLastName: FieldRef<"Patient", 'String'>
     readonly email: FieldRef<"Patient", 'String'>
-    readonly registration: FieldRef<"Patient", 'String'>
+    readonly phone: FieldRef<"Patient", 'String'>
+    readonly birthday: FieldRef<"Patient", 'String'>
     readonly notes: FieldRef<"Patient", 'String'>
   }
     
@@ -1544,6 +1623,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Patient
      */
     select?: PatientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
     /**
      * Filter, which Patient to fetch.
      */
@@ -1560,6 +1643,10 @@ export namespace Prisma {
      */
     select?: PatientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
+    /**
      * Filter, which Patient to fetch.
      */
     where: PatientWhereUniqueInput
@@ -1574,6 +1661,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Patient
      */
     select?: PatientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
     /**
      * Filter, which Patient to fetch.
      */
@@ -1620,6 +1711,10 @@ export namespace Prisma {
      */
     select?: PatientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
+    /**
      * Filter, which Patient to fetch.
      */
     where?: PatientWhereInput
@@ -1665,6 +1760,10 @@ export namespace Prisma {
      */
     select?: PatientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
+    /**
      * Filter, which Patients to fetch.
      */
     where?: PatientWhereInput
@@ -1705,6 +1804,10 @@ export namespace Prisma {
      */
     select?: PatientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
+    /**
      * The data needed to create a Patient.
      */
     data: XOR<PatientCreateInput, PatientUncheckedCreateInput>
@@ -1731,6 +1834,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Patient
      */
     select?: PatientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
     /**
      * The data needed to update a Patient.
      */
@@ -1766,6 +1873,10 @@ export namespace Prisma {
      */
     select?: PatientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
+    /**
      * The filter to search for the Patient to update in case it exists.
      */
     where: PatientWhereUniqueInput
@@ -1789,6 +1900,10 @@ export namespace Prisma {
      */
     select?: PatientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
+    /**
      * Filter which Patient to delete.
      */
     where: PatientWhereUniqueInput
@@ -1807,6 +1922,22 @@ export namespace Prisma {
 
 
   /**
+   * Patient.historical
+   */
+  export type Patient$historicalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    where?: HistoricalWhereInput
+  }
+
+
+  /**
    * Patient without action
    */
   export type PatientDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1814,6 +1945,944 @@ export namespace Prisma {
      * Select specific fields to fetch from the Patient
      */
     select?: PatientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PatientInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Historical
+   */
+
+  export type AggregateHistorical = {
+    _count: HistoricalCountAggregateOutputType | null
+    _avg: HistoricalAvgAggregateOutputType | null
+    _sum: HistoricalSumAggregateOutputType | null
+    _min: HistoricalMinAggregateOutputType | null
+    _max: HistoricalMaxAggregateOutputType | null
+  }
+
+  export type HistoricalAvgAggregateOutputType = {
+    id: number | null
+    patientId: number | null
+  }
+
+  export type HistoricalSumAggregateOutputType = {
+    id: number | null
+    patientId: number | null
+  }
+
+  export type HistoricalMinAggregateOutputType = {
+    id: number | null
+    patientId: number | null
+    history: string | null
+  }
+
+  export type HistoricalMaxAggregateOutputType = {
+    id: number | null
+    patientId: number | null
+    history: string | null
+  }
+
+  export type HistoricalCountAggregateOutputType = {
+    id: number
+    patientId: number
+    history: number
+    _all: number
+  }
+
+
+  export type HistoricalAvgAggregateInputType = {
+    id?: true
+    patientId?: true
+  }
+
+  export type HistoricalSumAggregateInputType = {
+    id?: true
+    patientId?: true
+  }
+
+  export type HistoricalMinAggregateInputType = {
+    id?: true
+    patientId?: true
+    history?: true
+  }
+
+  export type HistoricalMaxAggregateInputType = {
+    id?: true
+    patientId?: true
+    history?: true
+  }
+
+  export type HistoricalCountAggregateInputType = {
+    id?: true
+    patientId?: true
+    history?: true
+    _all?: true
+  }
+
+  export type HistoricalAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Historical to aggregate.
+     */
+    where?: HistoricalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Historicals to fetch.
+     */
+    orderBy?: HistoricalOrderByWithRelationInput | HistoricalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HistoricalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Historicals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Historicals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Historicals
+    **/
+    _count?: true | HistoricalCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HistoricalAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HistoricalSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HistoricalMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HistoricalMaxAggregateInputType
+  }
+
+  export type GetHistoricalAggregateType<T extends HistoricalAggregateArgs> = {
+        [P in keyof T & keyof AggregateHistorical]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHistorical[P]>
+      : GetScalarType<T[P], AggregateHistorical[P]>
+  }
+
+
+
+
+  export type HistoricalGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HistoricalWhereInput
+    orderBy?: HistoricalOrderByWithAggregationInput | HistoricalOrderByWithAggregationInput[]
+    by: HistoricalScalarFieldEnum[] | HistoricalScalarFieldEnum
+    having?: HistoricalScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HistoricalCountAggregateInputType | true
+    _avg?: HistoricalAvgAggregateInputType
+    _sum?: HistoricalSumAggregateInputType
+    _min?: HistoricalMinAggregateInputType
+    _max?: HistoricalMaxAggregateInputType
+  }
+
+  export type HistoricalGroupByOutputType = {
+    id: number
+    patientId: number
+    history: string
+    _count: HistoricalCountAggregateOutputType | null
+    _avg: HistoricalAvgAggregateOutputType | null
+    _sum: HistoricalSumAggregateOutputType | null
+    _min: HistoricalMinAggregateOutputType | null
+    _max: HistoricalMaxAggregateOutputType | null
+  }
+
+  type GetHistoricalGroupByPayload<T extends HistoricalGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HistoricalGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HistoricalGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HistoricalGroupByOutputType[P]>
+            : GetScalarType<T[P], HistoricalGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HistoricalSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    patientId?: boolean
+    history?: boolean
+    patient?: boolean | PatientDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["historical"]>
+
+  export type HistoricalSelectScalar = {
+    id?: boolean
+    patientId?: boolean
+    history?: boolean
+  }
+
+  export type HistoricalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    patient?: boolean | PatientDefaultArgs<ExtArgs>
+  }
+
+
+  export type $HistoricalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Historical"
+    objects: {
+      patient: Prisma.$PatientPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      patientId: number
+      history: string
+    }, ExtArgs["result"]["historical"]>
+    composites: {}
+  }
+
+
+  type HistoricalGetPayload<S extends boolean | null | undefined | HistoricalDefaultArgs> = $Result.GetResult<Prisma.$HistoricalPayload, S>
+
+  type HistoricalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<HistoricalFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: HistoricalCountAggregateInputType | true
+    }
+
+  export interface HistoricalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Historical'], meta: { name: 'Historical' } }
+    /**
+     * Find zero or one Historical that matches the filter.
+     * @param {HistoricalFindUniqueArgs} args - Arguments to find a Historical
+     * @example
+     * // Get one Historical
+     * const historical = await prisma.historical.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends HistoricalFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, HistoricalFindUniqueArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Historical that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {HistoricalFindUniqueOrThrowArgs} args - Arguments to find a Historical
+     * @example
+     * // Get one Historical
+     * const historical = await prisma.historical.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends HistoricalFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, HistoricalFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Historical that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalFindFirstArgs} args - Arguments to find a Historical
+     * @example
+     * // Get one Historical
+     * const historical = await prisma.historical.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends HistoricalFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, HistoricalFindFirstArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Historical that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalFindFirstOrThrowArgs} args - Arguments to find a Historical
+     * @example
+     * // Get one Historical
+     * const historical = await prisma.historical.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends HistoricalFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, HistoricalFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Historicals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Historicals
+     * const historicals = await prisma.historical.findMany()
+     * 
+     * // Get first 10 Historicals
+     * const historicals = await prisma.historical.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const historicalWithIdOnly = await prisma.historical.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends HistoricalFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, HistoricalFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Historical.
+     * @param {HistoricalCreateArgs} args - Arguments to create a Historical.
+     * @example
+     * // Create one Historical
+     * const Historical = await prisma.historical.create({
+     *   data: {
+     *     // ... data to create a Historical
+     *   }
+     * })
+     * 
+    **/
+    create<T extends HistoricalCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, HistoricalCreateArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Historicals.
+     *     @param {HistoricalCreateManyArgs} args - Arguments to create many Historicals.
+     *     @example
+     *     // Create many Historicals
+     *     const historical = await prisma.historical.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends HistoricalCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, HistoricalCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Historical.
+     * @param {HistoricalDeleteArgs} args - Arguments to delete one Historical.
+     * @example
+     * // Delete one Historical
+     * const Historical = await prisma.historical.delete({
+     *   where: {
+     *     // ... filter to delete one Historical
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends HistoricalDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, HistoricalDeleteArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Historical.
+     * @param {HistoricalUpdateArgs} args - Arguments to update one Historical.
+     * @example
+     * // Update one Historical
+     * const historical = await prisma.historical.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends HistoricalUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, HistoricalUpdateArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Historicals.
+     * @param {HistoricalDeleteManyArgs} args - Arguments to filter Historicals to delete.
+     * @example
+     * // Delete a few Historicals
+     * const { count } = await prisma.historical.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends HistoricalDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, HistoricalDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Historicals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Historicals
+     * const historical = await prisma.historical.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends HistoricalUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, HistoricalUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Historical.
+     * @param {HistoricalUpsertArgs} args - Arguments to update or create a Historical.
+     * @example
+     * // Update or create a Historical
+     * const historical = await prisma.historical.upsert({
+     *   create: {
+     *     // ... data to create a Historical
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Historical we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends HistoricalUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, HistoricalUpsertArgs<ExtArgs>>
+    ): Prisma__HistoricalClient<$Result.GetResult<Prisma.$HistoricalPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Historicals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalCountArgs} args - Arguments to filter Historicals to count.
+     * @example
+     * // Count the number of Historicals
+     * const count = await prisma.historical.count({
+     *   where: {
+     *     // ... the filter for the Historicals we want to count
+     *   }
+     * })
+    **/
+    count<T extends HistoricalCountArgs>(
+      args?: Subset<T, HistoricalCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HistoricalCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Historical.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HistoricalAggregateArgs>(args: Subset<T, HistoricalAggregateArgs>): Prisma.PrismaPromise<GetHistoricalAggregateType<T>>
+
+    /**
+     * Group by Historical.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HistoricalGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HistoricalGroupByArgs['orderBy'] }
+        : { orderBy?: HistoricalGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HistoricalGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHistoricalGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Historical model
+   */
+  readonly fields: HistoricalFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Historical.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HistoricalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    patient<T extends PatientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PatientDefaultArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Historical model
+   */ 
+  interface HistoricalFieldRefs {
+    readonly id: FieldRef<"Historical", 'Int'>
+    readonly patientId: FieldRef<"Historical", 'Int'>
+    readonly history: FieldRef<"Historical", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Historical findUnique
+   */
+  export type HistoricalFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * Filter, which Historical to fetch.
+     */
+    where: HistoricalWhereUniqueInput
+  }
+
+
+  /**
+   * Historical findUniqueOrThrow
+   */
+  export type HistoricalFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * Filter, which Historical to fetch.
+     */
+    where: HistoricalWhereUniqueInput
+  }
+
+
+  /**
+   * Historical findFirst
+   */
+  export type HistoricalFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * Filter, which Historical to fetch.
+     */
+    where?: HistoricalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Historicals to fetch.
+     */
+    orderBy?: HistoricalOrderByWithRelationInput | HistoricalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Historicals.
+     */
+    cursor?: HistoricalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Historicals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Historicals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Historicals.
+     */
+    distinct?: HistoricalScalarFieldEnum | HistoricalScalarFieldEnum[]
+  }
+
+
+  /**
+   * Historical findFirstOrThrow
+   */
+  export type HistoricalFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * Filter, which Historical to fetch.
+     */
+    where?: HistoricalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Historicals to fetch.
+     */
+    orderBy?: HistoricalOrderByWithRelationInput | HistoricalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Historicals.
+     */
+    cursor?: HistoricalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Historicals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Historicals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Historicals.
+     */
+    distinct?: HistoricalScalarFieldEnum | HistoricalScalarFieldEnum[]
+  }
+
+
+  /**
+   * Historical findMany
+   */
+  export type HistoricalFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * Filter, which Historicals to fetch.
+     */
+    where?: HistoricalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Historicals to fetch.
+     */
+    orderBy?: HistoricalOrderByWithRelationInput | HistoricalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Historicals.
+     */
+    cursor?: HistoricalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Historicals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Historicals.
+     */
+    skip?: number
+    distinct?: HistoricalScalarFieldEnum | HistoricalScalarFieldEnum[]
+  }
+
+
+  /**
+   * Historical create
+   */
+  export type HistoricalCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Historical.
+     */
+    data: XOR<HistoricalCreateInput, HistoricalUncheckedCreateInput>
+  }
+
+
+  /**
+   * Historical createMany
+   */
+  export type HistoricalCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Historicals.
+     */
+    data: HistoricalCreateManyInput | HistoricalCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Historical update
+   */
+  export type HistoricalUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Historical.
+     */
+    data: XOR<HistoricalUpdateInput, HistoricalUncheckedUpdateInput>
+    /**
+     * Choose, which Historical to update.
+     */
+    where: HistoricalWhereUniqueInput
+  }
+
+
+  /**
+   * Historical updateMany
+   */
+  export type HistoricalUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Historicals.
+     */
+    data: XOR<HistoricalUpdateManyMutationInput, HistoricalUncheckedUpdateManyInput>
+    /**
+     * Filter which Historicals to update
+     */
+    where?: HistoricalWhereInput
+  }
+
+
+  /**
+   * Historical upsert
+   */
+  export type HistoricalUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Historical to update in case it exists.
+     */
+    where: HistoricalWhereUniqueInput
+    /**
+     * In case the Historical found by the `where` argument doesn't exist, create a new Historical with this data.
+     */
+    create: XOR<HistoricalCreateInput, HistoricalUncheckedCreateInput>
+    /**
+     * In case the Historical was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HistoricalUpdateInput, HistoricalUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Historical delete
+   */
+  export type HistoricalDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
+    /**
+     * Filter which Historical to delete.
+     */
+    where: HistoricalWhereUniqueInput
+  }
+
+
+  /**
+   * Historical deleteMany
+   */
+  export type HistoricalDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Historicals to delete
+     */
+    where?: HistoricalWhereInput
+  }
+
+
+  /**
+   * Historical without action
+   */
+  export type HistoricalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Historical
+     */
+    select?: HistoricalSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: HistoricalInclude<ExtArgs> | null
   }
 
 
@@ -1835,16 +2904,24 @@ export namespace Prisma {
   export const PatientScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    lastName: 'lastName',
-    phone: 'phone',
-    sex: 'sex',
-    birthday: 'birthday',
+    firstLastName: 'firstLastName',
+    secondLastName: 'secondLastName',
     email: 'email',
-    registration: 'registration',
+    phone: 'phone',
+    birthday: 'birthday',
     notes: 'notes'
   };
 
   export type PatientScalarFieldEnum = (typeof PatientScalarFieldEnum)[keyof typeof PatientScalarFieldEnum]
+
+
+  export const HistoricalScalarFieldEnum: {
+    id: 'id',
+    patientId: 'patientId',
+    history: 'history'
+  };
+
+  export type HistoricalScalarFieldEnum = (typeof HistoricalScalarFieldEnum)[keyof typeof HistoricalScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1927,25 +3004,25 @@ export namespace Prisma {
     NOT?: PatientWhereInput | PatientWhereInput[]
     id?: IntFilter<"Patient"> | number
     name?: StringFilter<"Patient"> | string
-    lastName?: StringFilter<"Patient"> | string
-    phone?: StringNullableFilter<"Patient"> | string | null
-    sex?: StringNullableFilter<"Patient"> | string | null
-    birthday?: StringNullableFilter<"Patient"> | string | null
+    firstLastName?: StringFilter<"Patient"> | string
+    secondLastName?: StringNullableFilter<"Patient"> | string | null
     email?: StringNullableFilter<"Patient"> | string | null
-    registration?: StringNullableFilter<"Patient"> | string | null
+    phone?: StringNullableFilter<"Patient"> | string | null
+    birthday?: StringNullableFilter<"Patient"> | string | null
     notes?: StringNullableFilter<"Patient"> | string | null
+    historical?: XOR<HistoricalNullableRelationFilter, HistoricalWhereInput> | null
   }
 
   export type PatientOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    lastName?: SortOrder
-    phone?: SortOrderInput | SortOrder
-    sex?: SortOrderInput | SortOrder
-    birthday?: SortOrderInput | SortOrder
+    firstLastName?: SortOrder
+    secondLastName?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
-    registration?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
+    historical?: HistoricalOrderByWithRelationInput
   }
 
   export type PatientWhereUniqueInput = Prisma.AtLeast<{
@@ -1954,24 +3031,23 @@ export namespace Prisma {
     OR?: PatientWhereInput[]
     NOT?: PatientWhereInput | PatientWhereInput[]
     name?: StringFilter<"Patient"> | string
-    lastName?: StringFilter<"Patient"> | string
-    phone?: StringNullableFilter<"Patient"> | string | null
-    sex?: StringNullableFilter<"Patient"> | string | null
-    birthday?: StringNullableFilter<"Patient"> | string | null
+    firstLastName?: StringFilter<"Patient"> | string
+    secondLastName?: StringNullableFilter<"Patient"> | string | null
     email?: StringNullableFilter<"Patient"> | string | null
-    registration?: StringNullableFilter<"Patient"> | string | null
+    phone?: StringNullableFilter<"Patient"> | string | null
+    birthday?: StringNullableFilter<"Patient"> | string | null
     notes?: StringNullableFilter<"Patient"> | string | null
+    historical?: XOR<HistoricalNullableRelationFilter, HistoricalWhereInput> | null
   }, "id">
 
   export type PatientOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    lastName?: SortOrder
-    phone?: SortOrderInput | SortOrder
-    sex?: SortOrderInput | SortOrder
-    birthday?: SortOrderInput | SortOrder
+    firstLastName?: SortOrder
+    secondLastName?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
-    registration?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     _count?: PatientCountOrderByAggregateInput
     _avg?: PatientAvgOrderByAggregateInput
@@ -1986,94 +3062,175 @@ export namespace Prisma {
     NOT?: PatientScalarWhereWithAggregatesInput | PatientScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Patient"> | number
     name?: StringWithAggregatesFilter<"Patient"> | string
-    lastName?: StringWithAggregatesFilter<"Patient"> | string
-    phone?: StringNullableWithAggregatesFilter<"Patient"> | string | null
-    sex?: StringNullableWithAggregatesFilter<"Patient"> | string | null
-    birthday?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    firstLastName?: StringWithAggregatesFilter<"Patient"> | string
+    secondLastName?: StringNullableWithAggregatesFilter<"Patient"> | string | null
     email?: StringNullableWithAggregatesFilter<"Patient"> | string | null
-    registration?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+    birthday?: StringNullableWithAggregatesFilter<"Patient"> | string | null
     notes?: StringNullableWithAggregatesFilter<"Patient"> | string | null
+  }
+
+  export type HistoricalWhereInput = {
+    AND?: HistoricalWhereInput | HistoricalWhereInput[]
+    OR?: HistoricalWhereInput[]
+    NOT?: HistoricalWhereInput | HistoricalWhereInput[]
+    id?: IntFilter<"Historical"> | number
+    patientId?: IntFilter<"Historical"> | number
+    history?: StringFilter<"Historical"> | string
+    patient?: XOR<PatientRelationFilter, PatientWhereInput>
+  }
+
+  export type HistoricalOrderByWithRelationInput = {
+    id?: SortOrder
+    patientId?: SortOrder
+    history?: SortOrder
+    patient?: PatientOrderByWithRelationInput
+  }
+
+  export type HistoricalWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    patientId?: number
+    AND?: HistoricalWhereInput | HistoricalWhereInput[]
+    OR?: HistoricalWhereInput[]
+    NOT?: HistoricalWhereInput | HistoricalWhereInput[]
+    history?: StringFilter<"Historical"> | string
+    patient?: XOR<PatientRelationFilter, PatientWhereInput>
+  }, "id" | "patientId">
+
+  export type HistoricalOrderByWithAggregationInput = {
+    id?: SortOrder
+    patientId?: SortOrder
+    history?: SortOrder
+    _count?: HistoricalCountOrderByAggregateInput
+    _avg?: HistoricalAvgOrderByAggregateInput
+    _max?: HistoricalMaxOrderByAggregateInput
+    _min?: HistoricalMinOrderByAggregateInput
+    _sum?: HistoricalSumOrderByAggregateInput
+  }
+
+  export type HistoricalScalarWhereWithAggregatesInput = {
+    AND?: HistoricalScalarWhereWithAggregatesInput | HistoricalScalarWhereWithAggregatesInput[]
+    OR?: HistoricalScalarWhereWithAggregatesInput[]
+    NOT?: HistoricalScalarWhereWithAggregatesInput | HistoricalScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Historical"> | number
+    patientId?: IntWithAggregatesFilter<"Historical"> | number
+    history?: StringWithAggregatesFilter<"Historical"> | string
   }
 
   export type PatientCreateInput = {
     name: string
-    lastName: string
-    phone?: string | null
-    sex?: string | null
-    birthday?: string | null
+    firstLastName: string
+    secondLastName?: string | null
     email?: string | null
-    registration?: string | null
+    phone?: string | null
+    birthday?: string | null
     notes?: string | null
+    historical?: HistoricalCreateNestedOneWithoutPatientInput
   }
 
   export type PatientUncheckedCreateInput = {
     id?: number
     name: string
-    lastName: string
-    phone?: string | null
-    sex?: string | null
-    birthday?: string | null
+    firstLastName: string
+    secondLastName?: string | null
     email?: string | null
-    registration?: string | null
+    phone?: string | null
+    birthday?: string | null
     notes?: string | null
+    historical?: HistoricalUncheckedCreateNestedOneWithoutPatientInput
   }
 
   export type PatientUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    sex?: NullableStringFieldUpdateOperationsInput | string | null
-    birthday?: NullableStringFieldUpdateOperationsInput | string | null
+    firstLastName?: StringFieldUpdateOperationsInput | string
+    secondLastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    registration?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    historical?: HistoricalUpdateOneWithoutPatientNestedInput
   }
 
   export type PatientUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    sex?: NullableStringFieldUpdateOperationsInput | string | null
-    birthday?: NullableStringFieldUpdateOperationsInput | string | null
+    firstLastName?: StringFieldUpdateOperationsInput | string
+    secondLastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    registration?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    historical?: HistoricalUncheckedUpdateOneWithoutPatientNestedInput
   }
 
   export type PatientCreateManyInput = {
     id?: number
     name: string
-    lastName: string
-    phone?: string | null
-    sex?: string | null
-    birthday?: string | null
+    firstLastName: string
+    secondLastName?: string | null
     email?: string | null
-    registration?: string | null
+    phone?: string | null
+    birthday?: string | null
     notes?: string | null
   }
 
   export type PatientUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    sex?: NullableStringFieldUpdateOperationsInput | string | null
-    birthday?: NullableStringFieldUpdateOperationsInput | string | null
+    firstLastName?: StringFieldUpdateOperationsInput | string
+    secondLastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    registration?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PatientUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    sex?: NullableStringFieldUpdateOperationsInput | string | null
-    birthday?: NullableStringFieldUpdateOperationsInput | string | null
+    firstLastName?: StringFieldUpdateOperationsInput | string
+    secondLastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
-    registration?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HistoricalCreateInput = {
+    history: string
+    patient: PatientCreateNestedOneWithoutHistoricalInput
+  }
+
+  export type HistoricalUncheckedCreateInput = {
+    id?: number
+    patientId: number
+    history: string
+  }
+
+  export type HistoricalUpdateInput = {
+    history?: StringFieldUpdateOperationsInput | string
+    patient?: PatientUpdateOneRequiredWithoutHistoricalNestedInput
+  }
+
+  export type HistoricalUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    patientId?: IntFieldUpdateOperationsInput | number
+    history?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type HistoricalCreateManyInput = {
+    id?: number
+    patientId: number
+    history: string
+  }
+
+  export type HistoricalUpdateManyMutationInput = {
+    history?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type HistoricalUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    patientId?: IntFieldUpdateOperationsInput | number
+    history?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2117,6 +3274,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type HistoricalNullableRelationFilter = {
+    is?: HistoricalWhereInput | null
+    isNot?: HistoricalWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -2125,12 +3287,11 @@ export namespace Prisma {
   export type PatientCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    lastName?: SortOrder
-    phone?: SortOrder
-    sex?: SortOrder
-    birthday?: SortOrder
+    firstLastName?: SortOrder
+    secondLastName?: SortOrder
     email?: SortOrder
-    registration?: SortOrder
+    phone?: SortOrder
+    birthday?: SortOrder
     notes?: SortOrder
   }
 
@@ -2141,24 +3302,22 @@ export namespace Prisma {
   export type PatientMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    lastName?: SortOrder
-    phone?: SortOrder
-    sex?: SortOrder
-    birthday?: SortOrder
+    firstLastName?: SortOrder
+    secondLastName?: SortOrder
     email?: SortOrder
-    registration?: SortOrder
+    phone?: SortOrder
+    birthday?: SortOrder
     notes?: SortOrder
   }
 
   export type PatientMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    lastName?: SortOrder
-    phone?: SortOrder
-    sex?: SortOrder
-    birthday?: SortOrder
+    firstLastName?: SortOrder
+    secondLastName?: SortOrder
     email?: SortOrder
-    registration?: SortOrder
+    phone?: SortOrder
+    birthday?: SortOrder
     notes?: SortOrder
   }
 
@@ -2218,6 +3377,51 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type PatientRelationFilter = {
+    is?: PatientWhereInput
+    isNot?: PatientWhereInput
+  }
+
+  export type HistoricalCountOrderByAggregateInput = {
+    id?: SortOrder
+    patientId?: SortOrder
+    history?: SortOrder
+  }
+
+  export type HistoricalAvgOrderByAggregateInput = {
+    id?: SortOrder
+    patientId?: SortOrder
+  }
+
+  export type HistoricalMaxOrderByAggregateInput = {
+    id?: SortOrder
+    patientId?: SortOrder
+    history?: SortOrder
+  }
+
+  export type HistoricalMinOrderByAggregateInput = {
+    id?: SortOrder
+    patientId?: SortOrder
+    history?: SortOrder
+  }
+
+  export type HistoricalSumOrderByAggregateInput = {
+    id?: SortOrder
+    patientId?: SortOrder
+  }
+
+  export type HistoricalCreateNestedOneWithoutPatientInput = {
+    create?: XOR<HistoricalCreateWithoutPatientInput, HistoricalUncheckedCreateWithoutPatientInput>
+    connectOrCreate?: HistoricalCreateOrConnectWithoutPatientInput
+    connect?: HistoricalWhereUniqueInput
+  }
+
+  export type HistoricalUncheckedCreateNestedOneWithoutPatientInput = {
+    create?: XOR<HistoricalCreateWithoutPatientInput, HistoricalUncheckedCreateWithoutPatientInput>
+    connectOrCreate?: HistoricalCreateOrConnectWithoutPatientInput
+    connect?: HistoricalWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2226,12 +3430,46 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type HistoricalUpdateOneWithoutPatientNestedInput = {
+    create?: XOR<HistoricalCreateWithoutPatientInput, HistoricalUncheckedCreateWithoutPatientInput>
+    connectOrCreate?: HistoricalCreateOrConnectWithoutPatientInput
+    upsert?: HistoricalUpsertWithoutPatientInput
+    disconnect?: HistoricalWhereInput | boolean
+    delete?: HistoricalWhereInput | boolean
+    connect?: HistoricalWhereUniqueInput
+    update?: XOR<XOR<HistoricalUpdateToOneWithWhereWithoutPatientInput, HistoricalUpdateWithoutPatientInput>, HistoricalUncheckedUpdateWithoutPatientInput>
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type HistoricalUncheckedUpdateOneWithoutPatientNestedInput = {
+    create?: XOR<HistoricalCreateWithoutPatientInput, HistoricalUncheckedCreateWithoutPatientInput>
+    connectOrCreate?: HistoricalCreateOrConnectWithoutPatientInput
+    upsert?: HistoricalUpsertWithoutPatientInput
+    disconnect?: HistoricalWhereInput | boolean
+    delete?: HistoricalWhereInput | boolean
+    connect?: HistoricalWhereUniqueInput
+    update?: XOR<XOR<HistoricalUpdateToOneWithWhereWithoutPatientInput, HistoricalUpdateWithoutPatientInput>, HistoricalUncheckedUpdateWithoutPatientInput>
+  }
+
+  export type PatientCreateNestedOneWithoutHistoricalInput = {
+    create?: XOR<PatientCreateWithoutHistoricalInput, PatientUncheckedCreateWithoutHistoricalInput>
+    connectOrCreate?: PatientCreateOrConnectWithoutHistoricalInput
+    connect?: PatientWhereUniqueInput
+  }
+
+  export type PatientUpdateOneRequiredWithoutHistoricalNestedInput = {
+    create?: XOR<PatientCreateWithoutHistoricalInput, PatientUncheckedCreateWithoutHistoricalInput>
+    connectOrCreate?: PatientCreateOrConnectWithoutHistoricalInput
+    upsert?: PatientUpsertWithoutHistoricalInput
+    connect?: PatientWhereUniqueInput
+    update?: XOR<XOR<PatientUpdateToOneWithWhereWithoutHistoricalInput, PatientUpdateWithoutHistoricalInput>, PatientUncheckedUpdateWithoutHistoricalInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2345,6 +3583,98 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type HistoricalCreateWithoutPatientInput = {
+    history: string
+  }
+
+  export type HistoricalUncheckedCreateWithoutPatientInput = {
+    id?: number
+    history: string
+  }
+
+  export type HistoricalCreateOrConnectWithoutPatientInput = {
+    where: HistoricalWhereUniqueInput
+    create: XOR<HistoricalCreateWithoutPatientInput, HistoricalUncheckedCreateWithoutPatientInput>
+  }
+
+  export type HistoricalUpsertWithoutPatientInput = {
+    update: XOR<HistoricalUpdateWithoutPatientInput, HistoricalUncheckedUpdateWithoutPatientInput>
+    create: XOR<HistoricalCreateWithoutPatientInput, HistoricalUncheckedCreateWithoutPatientInput>
+    where?: HistoricalWhereInput
+  }
+
+  export type HistoricalUpdateToOneWithWhereWithoutPatientInput = {
+    where?: HistoricalWhereInput
+    data: XOR<HistoricalUpdateWithoutPatientInput, HistoricalUncheckedUpdateWithoutPatientInput>
+  }
+
+  export type HistoricalUpdateWithoutPatientInput = {
+    history?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type HistoricalUncheckedUpdateWithoutPatientInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    history?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PatientCreateWithoutHistoricalInput = {
+    name: string
+    firstLastName: string
+    secondLastName?: string | null
+    email?: string | null
+    phone?: string | null
+    birthday?: string | null
+    notes?: string | null
+  }
+
+  export type PatientUncheckedCreateWithoutHistoricalInput = {
+    id?: number
+    name: string
+    firstLastName: string
+    secondLastName?: string | null
+    email?: string | null
+    phone?: string | null
+    birthday?: string | null
+    notes?: string | null
+  }
+
+  export type PatientCreateOrConnectWithoutHistoricalInput = {
+    where: PatientWhereUniqueInput
+    create: XOR<PatientCreateWithoutHistoricalInput, PatientUncheckedCreateWithoutHistoricalInput>
+  }
+
+  export type PatientUpsertWithoutHistoricalInput = {
+    update: XOR<PatientUpdateWithoutHistoricalInput, PatientUncheckedUpdateWithoutHistoricalInput>
+    create: XOR<PatientCreateWithoutHistoricalInput, PatientUncheckedCreateWithoutHistoricalInput>
+    where?: PatientWhereInput
+  }
+
+  export type PatientUpdateToOneWithWhereWithoutHistoricalInput = {
+    where?: PatientWhereInput
+    data: XOR<PatientUpdateWithoutHistoricalInput, PatientUncheckedUpdateWithoutHistoricalInput>
+  }
+
+  export type PatientUpdateWithoutHistoricalInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    firstLastName?: StringFieldUpdateOperationsInput | string
+    secondLastName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PatientUncheckedUpdateWithoutHistoricalInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    firstLastName?: StringFieldUpdateOperationsInput | string
+    secondLastName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
 
 
   /**
@@ -2354,6 +3684,10 @@ export namespace Prisma {
      * @deprecated Use PatientDefaultArgs instead
      */
     export type PatientArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PatientDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use HistoricalDefaultArgs instead
+     */
+    export type HistoricalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HistoricalDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

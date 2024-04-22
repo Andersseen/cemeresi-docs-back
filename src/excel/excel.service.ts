@@ -9,4 +9,7 @@ export class ExcelService {
   async addManyClients(data: Patient[]) {
     return this.clientService.addManyClients([...data]);
   }
+  async getClients() {
+    return this.clientService.getAllClients();
+  }
 }
