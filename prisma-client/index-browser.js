@@ -17,11 +17,11 @@ exports.$Enums = {}
 
 /**
  * Prisma Client JS version: 5.12.1
- * Query Engine version: 473ed3124229e22d881cb7addf559799debae1ab
+ * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
  */
 Prisma.prismaVersion = {
   client: "5.12.1",
-  engine: "473ed3124229e22d881cb7addf559799debae1ab"
+  engine: "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -119,15 +119,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.ClientScalarFieldEnum = {
+exports.Prisma.PatientScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  lastName: 'lastName',
-  phone: 'phone',
-  sex: 'sex',
-  birthday: 'birthday',
+  firstLastName: 'firstLastName',
+  secondLastName: 'secondLastName',
   email: 'email',
+  phone: 'phone',
+  birthday: 'birthday',
   notes: 'notes'
+};
+
+exports.Prisma.HistoricalScalarFieldEnum = {
+  id: 'id',
+  patientId: 'patientId',
+  history: 'history'
 };
 
 exports.Prisma.SortOrder = {
@@ -147,7 +153,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Client: 'Client'
+  Patient: 'Patient',
+  Historical: 'Historical'
 };
 
 /**

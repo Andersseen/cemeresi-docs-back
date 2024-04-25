@@ -1,30 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from './../prisma/prisma.service';
-import { Client } from 'prisma-client';
+import { Patient } from 'prisma-client';
 
 @Injectable()
 export class ClientService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllClients(): Promise<Client[]> {
-    return this.prisma.client.findMany();
+  async getAllClients(): Promise<Patient[]> {
+    return this.prisma.patient.findMany();
   }
-  async getClientById(id: string): Promise<Client> {
+  async getClientById(id: string): Promise<Patient> {
     const numberId = Number(id);
-    return this.prisma.client.findUnique({ where: { id: numberId } });
+    return this.prisma.patient.findUnique({ where: { id: numberId } });
   }
-  async addClient(data: Client): Promise<Client> {
-    return this.prisma.client.create({ data });
+  async addClient(data: Patient): Promise<Patient> {
+    return this.prisma.patient.create({ data });
   }
-  async updateClient(id: string, data: Client): Promise<Client> {
+  async addManyClients(data: Patient[]) {
+    return this.prisma.patient.createMany({
+      data: [...data],
+      skipDuplicates: true,
+    });
+  }
+  async updateClient(id: string, data: Patient): Promise<Patient> {
     const numberId = Number(id);
-    return this.prisma.client.update({
+    return this.prisma.patient.update({
       where: { id: numberId },
       data,
     });
   }
-  async removeClient(id: string): Promise<Client> {
+  async removeClient(id: string): Promise<Patient> {
     const numberId = Number(id);
-    return this.prisma.client.delete({ where: { id: numberId } });
+    return this.prisma.patient.delete({ where: { id: numberId } });
   }
 }

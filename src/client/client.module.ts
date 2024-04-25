@@ -5,6 +5,7 @@ import { Module } from '@nestjs/common';
 
 @Module({
   imports: [PrismaModule],
+  exports: [ClientService],
   controllers: [ClientController],
   providers: [ClientService],
 })

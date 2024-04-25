@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
   output   = "../prisma-client" 
 }
@@ -10,13 +11,23 @@ datasource db {
 }
 
 
-model Client{
-  id        Int  @id @default(autoincrement())
-  name      String
-  lastName  String
-  phone     String?
-  sex       String?
-  birthday  String?
-  email     String? 
-  notes     String?
+model Patient{
+  id                Int  @id @default(autoincrement())
+  name              String
+  firstLastName     String
+  secondLastName    String?
+  email             String? 
+  phone             String?
+  birthday          String?
+  notes             String?
+  historical        Historical?
+
+}
+
+
+model Historical {
+  id               Int  @id @default(autoincrement())
+  patient          Patient @relation(fields: [patientId], references: [id])
+  patientId        Int @unique
+  history          String @db.Text
 }
