@@ -8,7 +8,6 @@ import {
   UploadedFile,
   Get,
   Res,
-  NotFoundException,
 } from '@nestjs/common';
 import { ExcelService } from './excel.service';
 
