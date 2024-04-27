@@ -43,7 +43,7 @@ export class ClientController {
     }
   }
 
-  @Put()
+  @Put('id')
   async updateClient_singular(
     @Param('id') id: string,
     @Body() Client_singular: Patient,
@@ -55,7 +55,7 @@ export class ClientController {
     }
   }
 
-  @Delete()
+  @Delete('id')
   async deleteClient_singular(@Param('id') id: string) {
     try {
       return this.clientService.removeClient(id);
