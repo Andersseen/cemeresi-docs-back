@@ -31,6 +31,7 @@
     "@prisma/adapter-pg": "^5.12.1",
     "@prisma/client": "5.12.1",
     "express": "^4.19.2",
+    "pdfkit": "^0.15.0",
     "pg": "^8.11.5",
     "prettier": "^3.2.5",
     "reflect-metadata": "^0.2.0",

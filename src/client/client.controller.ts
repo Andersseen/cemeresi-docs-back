@@ -34,8 +34,6 @@ export class ClientController {
 
   @Post()
   async createClient(@Body() Client_singular: Patient) {
-    console.log(Client_singular);
-
     try {
       return this.clientService.addClient(Client_singular);
     } catch (error) {
@@ -43,7 +41,7 @@ export class ClientController {
     }
   }
 
-  @Put('id')
+  @Put(':id')
   async updateClient_singular(
     @Param('id') id: string,
     @Body() Client_singular: Patient,
@@ -55,7 +53,7 @@ export class ClientController {
     }
   }
 
-  @Delete('id')
+  @Delete(':id')
   async deleteClient_singular(@Param('id') id: string) {
     try {
       return this.clientService.removeClient(id);
