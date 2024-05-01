@@ -47,6 +47,9 @@ importers:
       puppeteer:
         specifier: ^22.7.1
         version: 22.7.1(typescript@5.1.3)
+      puppeteer-core:
+        specifier: ^22.7.1
+        version: 22.7.1
       puppeteer-extra:
         specifier: ^3.3.6
         version: 3.3.6(puppeteer-core@22.7.1)(puppeteer@22.7.1(typescript@5.1.3))

@@ -10,7 +10,10 @@ import { PuppeteerModule } from 'nestjs-puppeteer';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    PuppeteerModule.forRoot({ headless: false }),
+    PuppeteerModule.forRoot({
+      headless: true,
+      args: ['--no-sandbox'],
+    }),
     ExcelModule,
     ClientModule,
     HistoricalModule,
