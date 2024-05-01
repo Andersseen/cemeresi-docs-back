@@ -31,8 +31,10 @@
     "@prisma/adapter-pg": "^5.12.1",
     "@prisma/client": "5.12.1",
     "express": "^4.19.2",
+    "pdfkit": "^0.15.0",
     "pg": "^8.11.5",
     "prettier": "^3.2.5",
+    "puppeteer": "^22.7.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
