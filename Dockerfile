@@ -14,13 +14,14 @@ ENV DATABASE_URL={$DATABASE_URL}
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
+
 FROM base AS build
 
 WORKDIR /usr/src/app
 COPY . .
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 COPY prisma-client ./prisma-client
-COPY .cache ./.cache
+RUN npx puppeteer browsers install chrome
 
 RUN pnpm build
 RUN pnpm prune --prod
