@@ -22,15 +22,22 @@ export class HistoricalController {
       'Content-Type': 'application/pdf',
       'Content-Disposition': 'attachment; filename=example.pdf',
       'Content-Length': buffer.length,
+      // prevent cache
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      Pragma: 'no-cache',
+      Expires: 0,
     });
 
     res.end(buffer);
   }
   @Get(':id')
   async getHistorical(@Param('id') id: string) {
-    const historical = await this.historicalService.getHistoricalById(id);
-    if (!historical) throw new NotFoundException('Patient not found');
-    return historical;
+    try {
+      const historical = await this.historicalService.getHistoricalById(id);
+      return historical;
+    } catch (error) {
+      throw new NotFoundException('Patient not found');
+    }
   }
   @Post(':id')
   async createHistorical(@Param('id') id: string, @Body() content) {

@@ -1,15 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import * as PDFDocument from 'pdfkit';
-import { Historical } from 'prisma-client';
+import * as puppeteer from 'puppeteer';
 import { ClientService } from 'src/client/client.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class HistoricalService {
-  constructor(
-    private prisma: PrismaService,
-    private clientService: ClientService,
-  ) {}
+  constructor(private prisma: PrismaService) {}
   async seveHistorical(id, text) {
     const numberId = Number(id);
     const data = {
@@ -28,6 +24,7 @@ export class HistoricalService {
     });
     return historical;
   }
+
   async generatePDF(id): Promise<Buffer> {
     const numberId = Number(id);
     const historical = await this.prisma.historical.findUnique({
@@ -35,24 +32,23 @@ export class HistoricalService {
         patientId: numberId,
       },
     });
-    const pdfBuffer: Buffer = await new Promise((resolve) => {
-      const doc = new PDFDocument({
-        size: 'LETTER',
-        bufferPages: true,
-      });
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.setContent(historical.history);
 
-      // customize your PDF document
-      doc.text(historical.history, 100, 50);
-      doc.end();
-
-      const buffer = [];
-      doc.on('data', buffer.push.bind(buffer));
-      doc.on('end', () => {
-        const data = Buffer.concat(buffer);
-        resolve(data);
-      });
+    const buffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        left: '0px',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+      },
     });
 
-    return pdfBuffer;
+    await browser.close();
+
+    return buffer;
   }
 }
