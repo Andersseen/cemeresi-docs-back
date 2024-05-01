@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as puppeteer from 'puppeteer';
-import { ClientService } from 'src/client/client.service';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { Buffer } from 'buffer';
 
 @Injectable()
 export class HistoricalService {

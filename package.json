@@ -30,6 +30,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@prisma/adapter-pg": "^5.12.1",
     "@prisma/client": "5.12.1",
+    "buffer": "^6.0.3",
     "express": "^4.19.2",
     "pdfkit": "^0.15.0",
     "pg": "^8.11.5",
