@@ -32,10 +32,12 @@
     "@prisma/client": "5.12.1",
     "buffer": "^6.0.3",
     "express": "^4.19.2",
+    "nestjs-puppeteer": "^2.1.0",
     "pdfkit": "^0.15.0",
     "pg": "^8.11.5",
     "prettier": "^3.2.5",
     "puppeteer": "^22.7.1",
+    "puppeteer-extra": "^3.3.6",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"

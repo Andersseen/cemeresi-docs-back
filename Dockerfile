@@ -20,6 +20,7 @@ WORKDIR /usr/src/app
 COPY . .
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 COPY prisma-client ./prisma-client
+COPY .cache ./.cache
 
 RUN pnpm build
 RUN pnpm prune --prod
