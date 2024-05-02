@@ -1,25 +1,5 @@
-FROM node:20-alpine AS base
+FROM node:slim AS base
 
-RUN npm i -g pnpm
-RUN npm i -g @nestjs/cli
-
-FROM base AS dependencies
-
-WORKDIR /usr/src/app
-
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install
-
-FROM base AS build
-
-WORKDIR /usr/src/app
-COPY . .
-COPY --from=dependencies /usr/src/app/node_modules ./node_modules
-
-RUN pnpm build
-RUN pnpm prune --prod
-
-FROM node:slim AS production
 # Install Google Chrome Stable and fonts
 # Note: this installs the necessary libs to make the browser work with Puppeteer.
 RUN apt-get update && apt-get install gnupg wget -y && \
@@ -31,18 +11,33 @@ RUN apt-get update && apt-get install gnupg wget -y && \
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV CHROMIUM_PATH=/usr/bin/chromium-browser
+
+RUN npm i -g pnpm
+RUN npm i -g @nestjs/cli
+
+FROM base AS dependencies
+
+WORKDIR /usr/src/app
+
 # Set production environment
 ENV NODE_ENV=production
 ENV DATABASE_URL={$DATABASE_URL}
 
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install
+
+
+FROM base AS build
+
 WORKDIR /usr/src/app
-
-# Copiar solo el directorio dist
-COPY --from=build /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/dist ./dist
+COPY . .
+COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 COPY prisma-client ./prisma-client
+RUN npx puppeteer browsers install chrome
 
-# ...otras configuraciones necesarias para el entorno de producción...
+RUN pnpm build
+RUN pnpm prune --prod
+
 EXPOSE 3000
-# Comando para ejecutar la aplicación en producción
+
 CMD [ "node", "dist/main.js" ]
