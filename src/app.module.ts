@@ -12,7 +12,8 @@ import { PuppeteerModule } from 'nestjs-puppeteer';
     ConfigModule.forRoot(),
     PuppeteerModule.forRoot({
       headless: true,
-      args: ['--no-sandbox'],
+      executablePath: '/usr/bin/google-chrome',
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     }),
     ExcelModule,
     ClientModule,
