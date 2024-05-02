@@ -21,7 +21,6 @@ WORKDIR /usr/src/app
 COPY . .
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 COPY prisma-client ./prisma-client
-RUN npx puppeteer browsers install chrome
 
 RUN pnpm build
 RUN pnpm prune --prod

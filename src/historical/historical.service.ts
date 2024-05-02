@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as puppeteer from 'puppeteer';
+import * as PDFDocument from 'pdfkit';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Buffer } from 'buffer';
 import { Historical } from 'prisma-client';
@@ -57,27 +57,25 @@ export class HistoricalService {
           patientId: numberId,
         },
       });
-      const browser = await puppeteer.launch({
-        headless: true,
-        // executablePath: '/usr/bin/google-chrome',
+      const pdfBuffer: Buffer = await new Promise((resolve) => {
+        const doc = new PDFDocument({
+          size: 'LETTER',
+          bufferPages: true,
+        });
+
+        // customize your PDF document
+        doc.text(historical.history, 100, 50);
+        doc.end();
+
+        const buffer = [];
+        doc.on('data', buffer.push.bind(buffer));
+        doc.on('end', () => {
+          const data = Buffer.concat(buffer);
+          resolve(data);
+        });
       });
-      const page = await browser.newPage();
-      await page.setContent(historical.history);
 
-      const buffer = await page.pdf({
-        format: 'A4',
-        printBackground: true,
-        margin: {
-          left: '0px',
-          top: '0px',
-          right: '0px',
-          bottom: '0px',
-        },
-      });
-
-      await browser.close();
-
-      return buffer;
+      return pdfBuffer;
     } catch (error) {
       throw new Error(`Error al cgenerar registro histórico: ${error.message}`);
     }
