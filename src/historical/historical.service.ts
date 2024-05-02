@@ -57,7 +57,10 @@ export class HistoricalService {
           patientId: numberId,
         },
       });
-      const browser = await puppeteer.launch({ headless: true });
+      const browser = await puppeteer.launch({
+        headless: true,
+        executablePath: '/usr/bin/google-chrome',
+      });
       const page = await browser.newPage();
       await page.setContent(historical.history);
 
