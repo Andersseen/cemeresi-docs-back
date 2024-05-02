@@ -149,10 +149,12 @@ const config = {
       },
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-1.1.x"
+        "value": "linux-musl-openssl-3.0.x"
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "driverAdapters"
+    ],
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -175,8 +177,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  binaryTargets = [\"native\", \"debian-openssl-1.1.x\"]\r\n  output   = \"../prisma-client\" \r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\n\r\nmodel Patient{\r\n  id                Int  @id @default(autoincrement())\r\n  name              String\r\n  firstLastName     String\r\n  secondLastName    String?\r\n  email             String? \r\n  phone             String?\r\n  birthday          String?\r\n  notes             String?\r\n  historical        Historical?\r\n\r\n}\r\n\r\n\r\nmodel Historical {\r\n  id               Int  @id @default(autoincrement())\r\n  patient          Patient @relation(fields: [patientId], references: [id])\r\n  patientId        Int @unique\r\n  history          String @db.Text\r\n}",
-  "inlineSchemaHash": "f1f33c70be29c88a9a05f71fea6fc19d2de8addaf75ed08f30a687f626e1efc2",
+  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  previewFeatures = [\"driverAdapters\"]\r\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\"]\r\n  output   = \"../prisma-client\" \r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\n\r\nmodel Patient{\r\n  id                Int  @id @default(autoincrement())\r\n  name              String\r\n  firstLastName     String\r\n  secondLastName    String?\r\n  email             String? \r\n  phone             String?\r\n  birthday          String?\r\n  notes             String?\r\n  historical        Historical?\r\n\r\n}\r\n\r\n\r\nmodel Historical {\r\n  id               Int  @id @default(autoincrement())\r\n  patient          Patient @relation(fields: [patientId], references: [id])\r\n  patientId        Int @unique\r\n  history          String @db.Text\r\n}",
+  "inlineSchemaHash": "54ec35c355df1ef3e8b39388ca644739f49c41537b44970e0f8c865f95ebe045",
   "copyEngine": true
 }
 config.dirname = '/'

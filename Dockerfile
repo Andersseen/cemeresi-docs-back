@@ -1,4 +1,4 @@
-FROM node:slim AS base
+FROM node:20-alpine AS base
 
 RUN npm i -g pnpm
 RUN npm i -g @nestjs/cli
@@ -14,7 +14,6 @@ ENV DATABASE_URL={$DATABASE_URL}
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
-
 FROM base AS build
 
 WORKDIR /usr/src/app
@@ -24,6 +23,7 @@ COPY prisma-client ./prisma-client
 
 RUN pnpm build
 RUN pnpm prune --prod
+
 
 EXPOSE 3000
 
